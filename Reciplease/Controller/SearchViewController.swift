@@ -15,6 +15,9 @@ class SearchViewController: UIViewController {
     
     var ingredients: [String] = []
     let defaults = UserDefaults.standard
+    let yummlyService = YummlyService()
+    
+    var recipes: [Recipe] = []
     
     var ingredientsBackup: [String] {
         get {
@@ -34,7 +37,13 @@ class SearchViewController: UIViewController {
 
     // MARKS: - Methods
     
-    
+    func searchRecipes() {
+        yummlyService.searchRecipes(ingredients: ingredients) { (success, recipes) in
+            if success {
+                // appel ecran
+            }
+        }
+    }
     
     // MARK: - Actions
     
@@ -64,6 +73,11 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchRecipesButtonPressed(_ sender: Any) {
+        if !ingredients.isEmpty {
+            searchRecipes()
+        } else {
+            // alert
+        }
     }
 }
 
