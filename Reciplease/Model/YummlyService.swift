@@ -31,6 +31,7 @@ class YummlyService {
         if let url = createURL(ingredients: ingredients) {
         
             yummlySession.request(url: url) { responseData in
+                print("verif data")
                 guard responseData.response?.statusCode == 200 else {
                     completionHandler(false, nil)
                     return
@@ -40,10 +41,21 @@ class YummlyService {
                     return
                 }
                 print(responseData)
+                
+//                do {
+//                    let resp = try JSONDecoder().decode(Recipes.self, from: data)
+//                    print(resp.matches[0].recipeName)
+//                }
+//                catch {
+//                    print(error)
+//                }
+                
+                
                 guard let recipes = try? JSONDecoder().decode(Recipes.self, from: data) else {
                     completionHandler(false, nil)
                     return
                 }
+                print(recipes.matches.count)
                 completionHandler(true, recipes.matches)
                 
             }

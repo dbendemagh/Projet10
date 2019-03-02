@@ -32,7 +32,7 @@ struct Recipe: Decodable {
     let rating: Int
 }
 
-struct Attributes: Codable {
+struct Attributes: Decodable {
     let course: [String]
 }
 

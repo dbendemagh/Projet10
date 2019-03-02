@@ -34,14 +34,26 @@ class SearchViewController: UIViewController {
         
         ingredients = ingredientsBackup
     }
-
+    
+    
     // MARKS: - Methods
     
     func searchRecipes() {
         yummlyService.searchRecipes(ingredients: ingredients) { (success, recipes) in
             if success {
-                // appel ecran
+                print("if success")
+                if let recipes = recipes {
+                    self.recipes = recipes
+                }
+                
+                self.performSegue(withIdentifier: "RecipesVCSegue", sender: self)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let recipesVC = segue.destination as? RecipesViewController {
+            recipesVC.recipes = recipes
         }
     }
     
