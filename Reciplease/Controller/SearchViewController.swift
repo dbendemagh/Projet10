@@ -42,18 +42,17 @@ class SearchViewController: UIViewController {
     // MARKS: - Methods
     
     func searchRecipes() {
-        activityIndicator.startAnimating()
+        toggleActivityIndicator(shown: true)
         yummlyService.searchRecipes(ingredients: ingredients) { (success, recipes) in
-            self.activityIndicator.stopAnimating()
+            self.toggleActivityIndicator(shown: false)
             if success {
-                print("if success")
                 if let recipes = recipes {
                     self.recipes = recipes
                 }
                 
                 self.performSegue(withIdentifier: "RecipesVCSegue", sender: self)
             } else {
-                print("Echec")
+                self.displayAlert(title: "Network error", message: "Cannot retrieve recipes")
             }
         }
     }
@@ -101,7 +100,7 @@ class SearchViewController: UIViewController {
         if !ingredients.isEmpty {
             searchRecipes()
         } else {
-            // alert
+            displayAlert(title: "No ingredients", message: "Add ingredients to search")
         }
     }
 }
@@ -119,6 +118,4 @@ extension SearchViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
