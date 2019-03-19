@@ -19,6 +19,7 @@ class RecipesViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         tableView.reloadData()
+        
     }
     
 
@@ -31,8 +32,6 @@ class RecipesViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    
 }
 
 extension RecipesViewController: UITableViewDataSource {
@@ -49,6 +48,10 @@ extension RecipesViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
+}
+
+extension RecipesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

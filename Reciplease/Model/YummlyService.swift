@@ -19,8 +19,10 @@ class YummlyService {
         var urlString: String = URLYummly.endPoint + URLYummly.appId + "&" + URLYummly.appKey + "&"
         
         for ingredient in ingredients {
-            urlString += URLYummly.allowedIngredient + ingredient
+            urlString += URLYummly.allowedIngredient + ingredient.lowercased() + "&"
         }
+        
+        urlString = String(urlString.dropLast())
         
         guard let url = URL(string: urlString) else { return nil }
         

@@ -12,6 +12,8 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchButton: UIButton!
     
     var ingredients: [String] = []
     let defaults = UserDefaults.standard
@@ -31,6 +33,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        toggleActivityIndicator(shown: false)
         
         ingredients = ingredientsBackup
     }
@@ -39,7 +42,9 @@ class SearchViewController: UIViewController {
     // MARKS: - Methods
     
     func searchRecipes() {
+        activityIndicator.startAnimating()
         yummlyService.searchRecipes(ingredients: ingredients) { (success, recipes) in
+            self.activityIndicator.stopAnimating()
             if success {
                 print("if success")
                 if let recipes = recipes {
@@ -47,8 +52,16 @@ class SearchViewController: UIViewController {
                 }
                 
                 self.performSegue(withIdentifier: "RecipesVCSegue", sender: self)
+            } else {
+                print("Echec")
             }
         }
+    }
+    
+    // display Activity indicator
+    private func toggleActivityIndicator(shown: Bool) {
+        searchButton.isHidden = shown
+        activityIndicator.isHidden = !shown
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
