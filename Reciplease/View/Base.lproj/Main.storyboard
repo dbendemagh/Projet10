@@ -305,7 +305,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgX-Cd-Ns7">
-                                <rect key="frame" x="0.0" y="283" width="414" height="29.5"/>
+                                <rect key="frame" x="15" y="283" width="399" height="29.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -354,7 +354,7 @@
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="3U2-Gz-b8I" secondAttribute="trailing" id="41L-AJ-vho"/>
                             <constraint firstItem="XgX-Cd-Ns7" firstAttribute="top" secondItem="osN-3a-Wtk" secondAttribute="bottom" constant="5" id="Aso-AQ-95p"/>
                             <constraint firstItem="B59-73-bbT" firstAttribute="top" secondItem="XgX-Cd-Ns7" secondAttribute="bottom" constant="5" id="C6w-zU-7nk"/>
-                            <constraint firstItem="XgX-Cd-Ns7" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="CCG-5A-1dF"/>
+                            <constraint firstItem="XgX-Cd-Ns7" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" constant="15" id="CCG-5A-1dF"/>
                             <constraint firstItem="osN-3a-Wtk" firstAttribute="top" secondItem="pi4-C7-Lb2" secondAttribute="top" id="Cms-Za-cFW"/>
                             <constraint firstItem="osN-3a-Wtk" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="I4N-Jl-AQy"/>
                             <constraint firstItem="B59-73-bbT" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="L2a-EV-Uhk"/>

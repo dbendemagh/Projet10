@@ -19,12 +19,6 @@ extension Int {
     }
     
     func secondsToString() -> String {
-        if self == 6000 {
-            print(self)
-        }
-        //let minutes: Int = self / 60
-        //let hours: Int = minutes / 60
-        
         let hours: Int = self / 3600
         let minutes: Int = (self / 60) % 60
         

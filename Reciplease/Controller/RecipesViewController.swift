@@ -13,7 +13,8 @@ class RecipesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var recipes: [Recipe] = []
-    var detailRecipe: Recipe?
+    var recipeDetails: RecipeDetails?
+    let yummlyService = YummlyService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class RecipesViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailsVC = segue.destination as? DetailsViewController {
-            detailsVC.recipe = detailRecipe
+            detailsVC.recipeDetails = recipeDetails
         }
     }
 }
@@ -50,8 +51,23 @@ extension RecipesViewController: UITableViewDataSource {
 
 extension RecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        detailRecipe = recipes[indexPath.row]
-        performSegue(withIdentifier: "DetailsVCSegue", sender: self)
+        let recipeId = recipes[indexPath.row].id
+        
+        //toggleActivityIndicator(shown: true)
+        yummlyService.getRecipeDetails(recipeId: recipeId) { (success, recipeDetails) in
+            //self.toggleActivityIndicator(shown: false)
+            if success {
+                if let recipeDetails = recipeDetails {
+                    self.recipeDetails = recipeDetails
+                }
+                
+                self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
+            } else {
+                self.displayAlert(title: "Network error", message: "Cannot retrieve recipe details")
+            }
+        }
+        
+        //performSegue(withIdentifier: "DetailsVCSegue", sender: self)
         
     }
 }

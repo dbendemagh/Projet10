@@ -52,26 +52,14 @@ class RecipeTableViewCell: UITableViewCell {
     }
     
     func setGradientBackground() {
-        //let gradientLayer = CAGradientLayer()
-        //gradientLayer.frame = recipeImage.bounds
-        //gradientLayer.colors = [UIColor.blue, UIColor.green]
-        //recipeImage.layer.addSublayer(gradientLayer) //.insertSublayer(gradientLayer, at: 0)
         let gradientLayer = CAGradientLayer()
-        print(recipeImage.frame)
-        print(gradientView.bounds)
-        gradientLayer.frame = recipeImage.bounds //CGRect(x: 10, y: 0, width: 400, height: 80) //recipeImage.bounds
-        
-        print(gradientLayer.frame)
-        print("grad bounds \(gradientLayer.bounds)")
-        print(bounds)
-        //gradientLayer.colors = [UIColor.white.withAlphaComponent(0.0).cgColor, UIColor.white.withAlphaComponent(1.0).cgColor]
+        gradientLayer.frame = recipeImage.bounds
         gradientLayer.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
-        //gradientLayer.colors = [UIColor.clear.cgColor, UIColor.blue.cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientView.layer.addSublayer(gradientLayer) //layer.insertSublayer(gradientLayer, at: 0) //mask = gradientLayer
-        gradientView.alpha = 0.5
+        gradientView.layer.addSublayer(gradientLayer)
+        gradientView.alpha = 0.6
     }
     
     
