@@ -52,21 +52,25 @@ class YummlyService {
                 }
                 print(responseData)
                 
-//                do {
-//                    let resp = try JSONDecoder().decode(Recipes.self, from: data)
-//                    print(resp.matches[0].recipeName)
-//                }
-//                catch {
-//                    print(error)
-//                }
-                
-                
-                guard let recipes = try? JSONDecoder().decode(Recipes.self, from: data) else {
-                    completionHandler(false, nil)
-                    return
+                do {
+                    let recipes = try JSONDecoder().decode(Recipes.self, from: data)
+                    //print(resp.matches[0].recipeName)
+                    print(recipes.matches.count)
+                    completionHandler(true, recipes.matches)
                 }
-                print(recipes.matches.count)
-                completionHandler(true, recipes.matches)
+                catch {
+                    print(error)
+                    completionHandler(false, nil)
+                }
+                
+                
+//                guard let recipes = try? JSONDecoder().decode(Recipes.self, from: data) else {
+//                    completionHandler(false, nil)
+//                    return
+//                }
+                
+                //print(recipes.matches.count)
+                //completionHandler(true, recipes.matches)
                 
             }
         }
@@ -85,7 +89,7 @@ class YummlyService {
                     completionHandler(false, nil)
                     return
                 }
-                print(responseData)
+                //print(responseData)
                 
                 do {
                     let resp = try JSONDecoder().decode(RecipeDetails.self, from: data)

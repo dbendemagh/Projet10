@@ -14,11 +14,11 @@ struct RecipeDetails: Decodable {
     let totalTime: String
     let images: [Image]
     let name: String
-    let source: Source
+    //let source: Source
     let id: String
     let ingredientLines: [String]
     //let cookTime: String?
-    let attribution: Attribution
+    //let attribution: Attribution
     let numberOfServings, totalTimeInSeconds: Int
     let attributes: Attributes0
     //let cookTimeInSeconds: Int

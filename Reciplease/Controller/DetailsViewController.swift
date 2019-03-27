@@ -13,6 +13,10 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientsTitle: UILabel!
+    @IBOutlet weak var gradientBackground: UIView!
+    @IBOutlet weak var recipeRating: UILabel!
+    @IBOutlet weak var recipeTime: UILabel!
+    @IBOutlet weak var backgroundStackView: UIStackView!
     
     var recipeDetails: RecipeDetails?
     var ingredients: [String] = []
@@ -33,10 +37,16 @@ class DetailsViewController: UIViewController {
             let urlString = recipeDetails.images[0].hostedLargeURL //recipe.smallImageUrls[0]
             //urlString = urlString.dropLast(2) + "360"
             url = URL(string: urlString)
+            
+            backgroundStackView.setBackground()
+            recipeRating.text = recipeDetails.rating.likestoString()
+            recipeTime.text = recipeDetails.totalTimeInSeconds.secondsToString()
         }
         
         recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
-            
+        gradientBackground.setGradientBackground()
+        
+        
     }
 
     /*

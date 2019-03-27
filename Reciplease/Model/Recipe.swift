@@ -27,14 +27,14 @@ struct Recipe: Decodable {
     let smallImageUrls: [String]
     let recipeName: String
     let totalTimeInSeconds: Int
-    let attributes: Attributes
+    //let attributes: Attributes
     //let flavors: JSONNull?
     let rating: Int
 }
 
-struct Attributes: Decodable {
-    let course: [String]
-}
+//struct Attributes: Decodable {
+//    let course: [String]
+//}
 
 //enum Course: String, Codable {
 //    case desserts = "Desserts"

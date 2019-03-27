@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bje-10-ZPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bje-10-ZPg">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -304,6 +304,55 @@
                                     <constraint firstAttribute="height" constant="190" id="tbx-QR-UqK"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4V-dn-sPR">
+                                <rect key="frame" x="0.0" y="114" width="414" height="161"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vec-pK-9vy">
+                                <rect key="frame" x="279" y="133" width="75" height="32"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ge0-iv-4Mg">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="16"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjm-zc-BvL">
+                                                <rect key="frame" x="0.0" y="0.0" width="59" height="16"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Like" translatesAutoresizingMaskIntoConstraints="NO" id="Mxx-QL-IV7">
+                                                <rect key="frame" x="59" y="0.0" width="16" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="bl0-z3-9yf"/>
+                                                    <constraint firstAttribute="width" secondItem="Mxx-QL-IV7" secondAttribute="height" multiplier="1:1" id="hX2-uz-aTY"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPn-kF-wx6">
+                                        <rect key="frame" x="0.0" y="16" width="75" height="16"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJl-3k-bkw">
+                                                <rect key="frame" x="0.0" y="0.0" width="59" height="16"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Time" translatesAutoresizingMaskIntoConstraints="NO" id="4Ud-3s-e5k">
+                                                <rect key="frame" x="59" y="0.0" width="16" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="0bb-SJ-mlL"/>
+                                                    <constraint firstAttribute="width" secondItem="4Ud-3s-e5k" secondAttribute="height" multiplier="1:1" id="TJx-67-9Xf"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="seu-92-uHe"/>
+                                </constraints>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgX-Cd-Ns7">
                                 <rect key="frame" x="15" y="283" width="399" height="29.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
@@ -360,8 +409,10 @@
                             <constraint firstItem="B59-73-bbT" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="L2a-EV-Uhk"/>
                             <constraint firstItem="B59-73-bbT" firstAttribute="trailing" secondItem="pi4-C7-Lb2" secondAttribute="trailing" id="LJc-hl-aYK"/>
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="XgX-Cd-Ns7" secondAttribute="trailing" id="Yxh-TE-XV1"/>
+                            <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="Vec-pK-9vy" secondAttribute="trailing" constant="60" id="bgI-8f-C9j"/>
                             <constraint firstItem="XgX-Cd-Ns7" firstAttribute="top" secondItem="3U2-Gz-b8I" secondAttribute="bottom" constant="8" id="eTg-uM-FhE"/>
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="bottom" secondItem="OzH-sq-cLx" secondAttribute="bottom" constant="15" id="klh-dv-W5g"/>
+                            <constraint firstItem="Vec-pK-9vy" firstAttribute="top" secondItem="pi4-C7-Lb2" secondAttribute="top" constant="45" id="mVt-Jc-YiO"/>
                             <constraint firstItem="3U2-Gz-b8I" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="p0Q-u9-fvj"/>
                             <constraint firstItem="OzH-sq-cLx" firstAttribute="top" secondItem="B59-73-bbT" secondAttribute="bottom" constant="10" id="pkR-K4-WSv"/>
                             <constraint firstItem="osN-3a-Wtk" firstAttribute="trailing" secondItem="pi4-C7-Lb2" secondAttribute="trailing" id="tSD-Uh-fU6"/>
@@ -370,9 +421,13 @@
                         <viewLayoutGuide key="safeArea" id="pi4-C7-Lb2"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundStackView" destination="Vec-pK-9vy" id="NyT-FS-R3p"/>
+                        <outlet property="gradientBackground" destination="g4V-dn-sPR" id="7vl-ma-aAh"/>
                         <outlet property="ingredientsTitle" destination="XgX-Cd-Ns7" id="GM5-UJ-Ya4"/>
                         <outlet property="recipeImage" destination="osN-3a-Wtk" id="zEq-WI-jUE"/>
                         <outlet property="recipeName" destination="3U2-Gz-b8I" id="nRG-BD-aJj"/>
+                        <outlet property="recipeRating" destination="pjm-zc-BvL" id="A5X-cC-12W"/>
+                        <outlet property="recipeTime" destination="JJl-3k-bkw" id="f7J-z9-IT3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oC-4V-nEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,8 +476,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Like" width="156" height="156"/>
-        <image name="Search" width="37.5" height="37.5"/>
-        <image name="Time" width="156" height="156"/>
+        <image name="Like" width="26" height="26"/>
+        <image name="Search" width="25" height="25"/>
+        <image name="Time" width="26" height="26"/>
     </resources>
 </document>

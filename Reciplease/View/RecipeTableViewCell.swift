@@ -27,7 +27,7 @@ class RecipeTableViewCell: UITableViewCell {
         // Initialization code
         //setGradientBackground()
         backgroundStackView.setBackground()
-        setGradientBackground()
+        gradientView.setGradientBackground()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,7 +51,7 @@ class RecipeTableViewCell: UITableViewCell {
         //}
     }
     
-    func setGradientBackground() {
+    func setGradientBackground0() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = recipeImage.bounds
         gradientLayer.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
@@ -64,7 +64,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     
     
-    override func layoutMarginsDidChange() {
+    //override func layoutMarginsDidChange() {
         //setGradientBackground()
-    }
+    //}
 }
