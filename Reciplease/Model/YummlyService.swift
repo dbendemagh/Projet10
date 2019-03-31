@@ -37,7 +37,7 @@ class YummlyService {
         return url
     }
     
-    func searchRecipes(ingredients: [String], completionHandler: @escaping (Bool, [Recipe]?) -> Void) {
+    func searchRecipes(ingredients: [String], completionHandler: @escaping (Bool, Recipes?) -> Void) {
         if let url = createURL(ingredients: ingredients) {
         
             yummlySession.request(url: url) { responseData in
@@ -56,22 +56,12 @@ class YummlyService {
                     let recipes = try JSONDecoder().decode(Recipes.self, from: data)
                     //print(resp.matches[0].recipeName)
                     print(recipes.matches.count)
-                    completionHandler(true, recipes.matches)
+                    completionHandler(true, recipes) // recipes.matches
                 }
                 catch {
                     print(error)
                     completionHandler(false, nil)
                 }
-                
-                
-//                guard let recipes = try? JSONDecoder().decode(Recipes.self, from: data) else {
-//                    completionHandler(false, nil)
-//                    return
-//                }
-                
-                //print(recipes.matches.count)
-                //completionHandler(true, recipes.matches)
-                
             }
         }
     }
@@ -92,18 +82,15 @@ class YummlyService {
                 //print(responseData)
                 
                 do {
-                    let resp = try JSONDecoder().decode(RecipeDetails.self, from: data)
-                }
+                    let recipeDetails = try JSONDecoder().decode(RecipeDetails.self, from: data)
+                    completionHandler(true, recipeDetails)                }
                 catch {
                     print(error)
+                    completionHandler(false, nil)
                 }
                 
-                guard let recipeDetails = try? JSONDecoder().decode(RecipeDetails.self, from: data) else {
-                    completionHandler(false, nil)
-                    return
-                }
                 //print(recipes.matches.count)
-                completionHandler(true, recipeDetails)
+                
             }
         }
     }

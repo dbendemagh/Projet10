@@ -8,9 +8,9 @@
 
 import Foundation
 
-// ingredientsTextField
-// Pas bien
-let ingredientsListKey = "IngredientsList"
+struct UserDefaultsKeys {
+    static let ingredientsList = "IngredientsList"
+}
 
 struct URLYummly {
     static let endPoint = "https://api.yummly.com/v1/api/"

@@ -19,15 +19,15 @@ class SearchViewController: UIViewController {
     let defaults = UserDefaults.standard
     let yummlyService = YummlyService()
     
-    var recipes: [Recipe] = []
+    var recipes: Recipes?    // = []
     
     var ingredientsBackup: [String] {
         get {
-            guard let list = defaults.array(forKey: ingredientsListKey) as? [String] else { return [] }
+            guard let list = defaults.array(forKey: UserDefaultsKeys.ingredientsList) as? [String] else { return [] }
             return list
         }
         set {
-            defaults.set(ingredients, forKey: ingredientsListKey)
+            defaults.set(ingredients, forKey: UserDefaultsKeys.ingredientsList)
         }
     }
     
@@ -39,7 +39,7 @@ class SearchViewController: UIViewController {
     }
     
     
-    // MARKS: - Methods
+    // MARK: - Methods
     
     func searchRecipes() {
         toggleActivityIndicator(shown: true)
@@ -64,8 +64,8 @@ class SearchViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let recipesVC = segue.destination as? RecipesViewController {
-            recipesVC.recipes = recipes
+        if let recipesVC = segue.destination as? RecipesViewController, let recipes = recipes {
+            recipesVC.recipes = recipes.matches
         }
     }
     

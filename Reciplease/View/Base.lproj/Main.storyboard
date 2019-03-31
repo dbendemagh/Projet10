@@ -310,7 +310,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vec-pK-9vy">
-                                <rect key="frame" x="279" y="133" width="75" height="32"/>
+                                <rect key="frame" x="309" y="118" width="75" height="32"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ge0-iv-4Mg">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="16"/>
@@ -409,10 +409,10 @@
                             <constraint firstItem="B59-73-bbT" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="L2a-EV-Uhk"/>
                             <constraint firstItem="B59-73-bbT" firstAttribute="trailing" secondItem="pi4-C7-Lb2" secondAttribute="trailing" id="LJc-hl-aYK"/>
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="XgX-Cd-Ns7" secondAttribute="trailing" id="Yxh-TE-XV1"/>
-                            <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="Vec-pK-9vy" secondAttribute="trailing" constant="60" id="bgI-8f-C9j"/>
+                            <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="Vec-pK-9vy" secondAttribute="trailing" constant="30" id="bgI-8f-C9j"/>
                             <constraint firstItem="XgX-Cd-Ns7" firstAttribute="top" secondItem="3U2-Gz-b8I" secondAttribute="bottom" constant="8" id="eTg-uM-FhE"/>
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="bottom" secondItem="OzH-sq-cLx" secondAttribute="bottom" constant="15" id="klh-dv-W5g"/>
-                            <constraint firstItem="Vec-pK-9vy" firstAttribute="top" secondItem="pi4-C7-Lb2" secondAttribute="top" constant="45" id="mVt-Jc-YiO"/>
+                            <constraint firstItem="Vec-pK-9vy" firstAttribute="top" secondItem="pi4-C7-Lb2" secondAttribute="top" constant="30" id="mVt-Jc-YiO"/>
                             <constraint firstItem="3U2-Gz-b8I" firstAttribute="leading" secondItem="pi4-C7-Lb2" secondAttribute="leading" id="p0Q-u9-fvj"/>
                             <constraint firstItem="OzH-sq-cLx" firstAttribute="top" secondItem="B59-73-bbT" secondAttribute="bottom" constant="10" id="pkR-K4-WSv"/>
                             <constraint firstItem="osN-3a-Wtk" firstAttribute="trailing" secondItem="pi4-C7-Lb2" secondAttribute="trailing" id="tSD-Uh-fU6"/>

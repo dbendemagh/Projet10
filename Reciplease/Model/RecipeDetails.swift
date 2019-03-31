@@ -14,7 +14,7 @@ struct RecipeDetails: Decodable {
     let totalTime: String
     let images: [Image]
     let name: String
-    //let source: Source
+    let source: Source
     let id: String
     let ingredientLines: [String]
     //let cookTime: String?

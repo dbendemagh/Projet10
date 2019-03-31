@@ -1,0 +1,47 @@
+{
+    "yield": "Serves 6-8",
+    "nutritionEstimates": [],
+    "totalTime": "15 min",
+    "images": [
+        {
+            "hostedSmallUrl": "https://lh3.googleusercontent.com/3dbNmfS4BI-7CUsm2WYE8l7-90CNi3rQPUkO5EMc0gts_MBUAVZlTngm-9VHshp9toXl73RKwiUs9JQCpx6RoQ=s90",
+            "hostedMediumUrl": "https://lh3.googleusercontent.com/3dbNmfS4BI-7CUsm2WYE8l7-90CNi3rQPUkO5EMc0gts_MBUAVZlTngm-9VHshp9toXl73RKwiUs9JQCpx6RoQ=s180",
+            "hostedLargeUrl": "https://lh3.googleusercontent.com/3dbNmfS4BI-7CUsm2WYE8l7-90CNi3rQPUkO5EMc0gts_MBUAVZlTngm-9VHshp9toXl73RKwiUs9JQCpx6RoQ=s360",
+            "imageUrlsBySize": {
+                "90": "https://lh3.googleusercontent.com/8H_kR4fF6IE517FKDHGOyVHEgNmmCdhX_Yz2YfxIDJgCQoU_NJ-hw_FJ1jEolQPPAfoKuKMw4jYjJK512gTyfQ=s90-c",
+                "360": "https://lh3.googleusercontent.com/8H_kR4fF6IE517FKDHGOyVHEgNmmCdhX_Yz2YfxIDJgCQoU_NJ-hw_FJ1jEolQPPAfoKuKMw4jYjJK512gTyfQ=s360-c"
+            }
+        }
+    ],
+    "name": "Meatball Parmesan Casserole",
+    "source": {
+        "sourceDisplayName": "Mrs. Happy Homemaker",
+        "sourceSiteUrl": "mrshappyhomemaker.com",
+        "sourceRecipeUrl": "https://www.mrshappyhomemaker.com/meatball-parmesan-casserole/"
+    },
+    "id": "Meatball-Parmesan-Casserole-2626493",
+    "ingredientLines": [
+        "1 bag of frozen meatballs, cooked according to package directions",
+        "pasta sauce",
+        "2 cups shredded mozzarella cheese",
+        "1 cup shredded parmesan cheese",
+        "italian seasoning, to taste"
+    ],
+    "cookTime": "15 Min",
+    "attribution": {
+        "html": "<a href='http://www.yummly.co/recipe/Meatball-Parmesan-Casserole-2626493'>Meatball Parmesan Casserole recipe</a> information powered by <img alt='Yummly' src='https://static.yummly.co/api-logo.png'/>",
+        "url": "http://www.yummly.co/recipe/Meatball-Parmesan-Casserole-2626493",
+        "text": "Meatball Parmesan Casserole recipes: information powered by Yummly",
+        "logo": "https://static.yummly.co/api-logo.png"
+    },
+    "numberOfServings": 7,
+    "totalTimeInSeconds": 900,
+    "attributes": {
+        "course": [
+            "Main Dishes"
+        ]
+    },
+    "cookTimeInSeconds": 900,
+    "flavors": {},
+    "rating": 4
+}
