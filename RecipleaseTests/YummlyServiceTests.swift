@@ -165,7 +165,7 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testGetRecipeDetailsShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
-        let fakeJsonResponse = FakeJsonResponse(jsonFile: "RecipeDetails")
+        let fakeJsonResponse = FakeJsonResponse(jsonFile: "YummlyRecipeDetails")
         let fakeResponse = FakeResponse(response: FakeNetworkResponse.responseOK, data: fakeJsonResponse.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)

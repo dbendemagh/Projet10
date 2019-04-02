@@ -19,7 +19,7 @@
 		65452F62221CA14C009B28DF /* YummlyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F61221CA14C009B28DF /* YummlyProtocol.swift */; };
 		65452F64221CB8B1009B28DF /* YummlySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F63221CB8B1009B28DF /* YummlySession.swift */; };
 		65452F66221CBA2D009B28DF /* YummlyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F65221CBA2D009B28DF /* YummlyService.swift */; };
-		65452F68221D59FC009B28DF /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F67221D59FC009B28DF /* Recipe.swift */; };
+		65452F68221D59FC009B28DF /* YummlyRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F67221D59FC009B28DF /* YummlyRecipes.swift */; };
 		65479431224B86680004A111 /* RecipeDetails.json in Resources */ = {isa = PBXBuildFile; fileRef = 65479430224B86680004A111 /* RecipeDetails.json */; };
 		654B8193224D550700F62A8D /* FakeNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B8192224D550700F62A8D /* FakeNetworkResponse.swift */; };
 		654B8195224D577C00F62A8D /* FakeJsonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B8194224D577C00F62A8D /* FakeJsonResponse.swift */; };
@@ -29,7 +29,7 @@
 		65985AF2224134F000737172 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF1224134F000737172 /* Int.swift */; };
 		65985AF422413ADB00737172 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF322413ADB00737172 /* Float.swift */; };
 		65985AF62241749A00737172 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF52241749A00737172 /* UIViewController.swift */; };
-		65985AF822466F2400737172 /* RecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF722466F2400737172 /* RecipeDetails.swift */; };
+		65985AF822466F2400737172 /* YummlyRecipeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF722466F2400737172 /* YummlyRecipeDetails.swift */; };
 		65DD38BD222C098A009894AF /* YummlySessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD38BC222C098A009894AF /* YummlySessionFake.swift */; };
 		65DD38BF222C0A6D009894AF /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DD38BE222C0A6D009894AF /* FakeResponseData.swift */; };
 		65DD38C1222C0D1A009894AF /* Recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 65DD38C0222C0D1A009894AF /* Recipes.json */; };
@@ -72,7 +72,7 @@
 		65452F61221CA14C009B28DF /* YummlyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlyProtocol.swift; sourceTree = "<group>"; };
 		65452F63221CB8B1009B28DF /* YummlySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlySession.swift; sourceTree = "<group>"; };
 		65452F65221CBA2D009B28DF /* YummlyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlyService.swift; sourceTree = "<group>"; };
-		65452F67221D59FC009B28DF /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		65452F67221D59FC009B28DF /* YummlyRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlyRecipes.swift; sourceTree = "<group>"; };
 		65479430224B86680004A111 /* RecipeDetails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipeDetails.json; sourceTree = "<group>"; };
 		654B8192224D550700F62A8D /* FakeNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkResponse.swift; sourceTree = "<group>"; };
 		654B8194224D577C00F62A8D /* FakeJsonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeJsonResponse.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		65985AF1224134F000737172 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		65985AF322413ADB00737172 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		65985AF52241749A00737172 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		65985AF722466F2400737172 /* RecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetails.swift; sourceTree = "<group>"; };
+		65985AF722466F2400737172 /* YummlyRecipeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlyRecipeDetails.swift; sourceTree = "<group>"; };
 		65DD38BC222C098A009894AF /* YummlySessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlySessionFake.swift; sourceTree = "<group>"; };
 		65DD38BE222C0A6D009894AF /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		65DD38C0222C0D1A009894AF /* Recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipes.json; sourceTree = "<group>"; };
@@ -205,8 +205,8 @@
 				65452F61221CA14C009B28DF /* YummlyProtocol.swift */,
 				65452F63221CB8B1009B28DF /* YummlySession.swift */,
 				65452F65221CBA2D009B28DF /* YummlyService.swift */,
-				65452F67221D59FC009B28DF /* Recipe.swift */,
-				65985AF722466F2400737172 /* RecipeDetails.swift */,
+				65452F67221D59FC009B28DF /* YummlyRecipes.swift */,
+				65985AF722466F2400737172 /* YummlyRecipeDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -417,7 +417,7 @@
 			files = (
 				65452F64221CB8B1009B28DF /* YummlySession.swift in Sources */,
 				65452F602219E372009B28DF /* String.swift in Sources */,
-				65985AF822466F2400737172 /* RecipeDetails.swift in Sources */,
+				65985AF822466F2400737172 /* YummlyRecipeDetails.swift in Sources */,
 				65452F5D2214274C009B28DF /* Constants.swift in Sources */,
 				6563F3262225D8940016A132 /* RecipeTableViewCell.swift in Sources */,
 				65DD38C8222FC911009894AF /* UIView.swift in Sources */,
@@ -425,7 +425,7 @@
 				65452F66221CBA2D009B28DF /* YummlyService.swift in Sources */,
 				6512D2832208F4DC00C53E19 /* SearchViewController.swift in Sources */,
 				65985AF62241749A00737172 /* UIViewController.swift in Sources */,
-				65452F68221D59FC009B28DF /* Recipe.swift in Sources */,
+				65452F68221D59FC009B28DF /* YummlyRecipes.swift in Sources */,
 				6559F878223C5AC300945076 /* UIStackView.swift in Sources */,
 				65452F62221CA14C009B28DF /* YummlyProtocol.swift in Sources */,
 				6563F32422246BFF0016A132 /* RecipesViewController.swift in Sources */,
