@@ -17,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let font = UIFont(name: "Chalkduster", size: 17) {
+            //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: font]
+            //NSAttributedString.Key.foregroundColor: UIColor.red,
+            let attrs = [
+                NSAttributedString.Key.font: font]
+            UINavigationBar.appearance().titleTextAttributes = attrs
+        }
+        
+        
         return true
     }
 
@@ -43,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

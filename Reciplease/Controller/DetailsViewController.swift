@@ -44,11 +44,27 @@ class DetailsViewController: UIViewController {
         }
         
         recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
-        gradientBackground.setGradientBackground()
-        
+        //gradientBackground.setGradientBackground()
+        setGradient()
         
     }
-
+    
+    func setGradient() {
+        let gradientView = UIView(frame: recipeImage.bounds)
+        gradientView.backgroundColor = .clear
+        gradientView.alpha = 0.7
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = gradientView.bounds
+        gradientLayer.colors = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
+        
+        gradientView.layer.addSublayer(gradientLayer) //layer.mask = gradientLayer
+        recipeImage.addSubview(gradientView)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -59,6 +75,11 @@ class DetailsViewController: UIViewController {
     }
     */
 
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        if let recipeDetails = recipeDetails {
+            RecipeEntity.add(recipeDetails: recipeDetails, ingredients: ingredients)
+        }
+    }
     
 }
 

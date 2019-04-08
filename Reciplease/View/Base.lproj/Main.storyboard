@@ -40,16 +40,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb2-tq-3EE">
-                                <rect key="frame" x="16" y="196.5" width="292" height="22"/>
+                                <rect key="frame" x="16" y="196.5" width="179" height="22"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-2Y-Wvk">
-                                <rect key="frame" x="318" y="191.5" width="80" height="32"/>
+                                <rect key="frame" x="205" y="191.5" width="193" height="32"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="esd-vN-UO6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="esd-vN-UO6"/>
                                     <constraint firstAttribute="height" constant="32" id="tXI-We-thx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -138,7 +138,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Reciplease" id="uLc-zH-29f"/>
+                    <navigationItem key="navigationItem" title="Reciplease" id="uLc-zH-29f">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="6IZ-PJ-0Jp"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="diP-sp-4PD" id="Xnn-tt-9ik"/>
                         <outlet property="ingredientsTextField" destination="vvF-xX-9vy" id="L1L-kH-KNV"/>
@@ -290,7 +292,7 @@
             </objects>
             <point key="canvasLocation" x="2852" y="131.78410794602701"/>
         </scene>
-        <!--Details View Controller-->
+        <!--Recipe Details-->
         <scene sceneID="yXw-ab-nHd">
             <objects>
                 <viewController id="Sai-Zy-YO9" customClass="DetailsViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -307,7 +309,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4V-dn-sPR">
                                 <rect key="frame" x="0.0" y="114" width="414" height="161"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vec-pK-9vy">
                                 <rect key="frame" x="309" y="118" width="75" height="32"/>
@@ -360,7 +362,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzH-sq-cLx">
-                                <rect key="frame" x="16" y="748" width="382" height="50"/>
+                                <rect key="frame" x="16" y="704" width="382" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="px7-b6-rNo"/>
@@ -380,7 +382,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B59-73-bbT">
-                                <rect key="frame" x="0.0" y="317.5" width="414" height="420.5"/>
+                                <rect key="frame" x="0.0" y="317.5" width="414" height="376.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" id="6ki-qX-e0k">
@@ -420,6 +422,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pi4-C7-Lb2"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Recipe Details" id="ha6-Kq-oio">
+                        <barButtonItem key="rightBarButtonItem" title="Favorite" image="Favorite" id="e7D-li-vGG">
+                            <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="favoriteButtonPressed:" destination="Sai-Zy-YO9" id="Wqn-rr-Yn8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backgroundStackView" destination="Vec-pK-9vy" id="NyT-FS-R3p"/>
                         <outlet property="gradientBackground" destination="g4V-dn-sPR" id="7vl-ma-aAh"/>
@@ -464,6 +476,7 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -476,6 +489,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Favorite" width="16" height="16"/>
         <image name="Like" width="26" height="26"/>
         <image name="Search" width="25" height="25"/>
         <image name="Time" width="26" height="26"/>
