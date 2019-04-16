@@ -43,15 +43,13 @@ class SearchViewController: UIViewController {
     
     func searchRecipes() {
         toggleActivityIndicator(shown: true)
-        yummlyService.searchRecipes(ingredients: ingredients) { (success, recipes) in
+        yummlyService.searchRecipes(ingredients: ingredients) { (result) in
             self.toggleActivityIndicator(shown: false)
-            if success {
-                if let recipes = recipes {
-                    self.recipes = recipes
-                }
-                
+            switch result {
+            case .success(let recipes):
+                self.recipes = recipes
                 self.performSegue(withIdentifier: "RecipesVCSegue", sender: self)
-            } else {
+            case .failure(_):
                 self.displayAlert(title: "Network error", message: "Cannot retrieve recipes")
             }
         }

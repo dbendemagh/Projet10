@@ -20,7 +20,7 @@ struct RecipeDetails: Decodable {
     //let cookTime: String?
     //let attribution: Attribution
     let numberOfServings, totalTimeInSeconds: Int
-    let attributes: Attributes0
+    //let attributes: Attributes0
     //let cookTimeInSeconds: Int
     let flavors: Flavors
     let rating: Int

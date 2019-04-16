@@ -13,13 +13,19 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientsTitle: UILabel!
-    @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var recipeRating: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
     @IBOutlet weak var backgroundStackView: UIStackView!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var recipeDetails: RecipeDetails?
     var ingredients: [String] = []
+    var image: UIImage?
+    var isFavorite: Bool = false
+    var dataImage: Data?
+    
+    let yummlyService = YummlyService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +33,65 @@ class DetailsViewController: UIViewController {
         initScreen()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setFavoriteButton()
+    }
+    
     func initScreen() {
         
-        ingredientsTitle.font = UIFont(name: "Chalkduster", size: 17)
+        ingredientsTitle.font = UIFont(name: Font.reciplease, size: 17)
+        backgroundStackView.setBackground()
+        //var url = URL(string: "")
         
-        var url = URL(string: "")
         if let recipeDetails = recipeDetails {
             recipeName.text = recipeDetails.name
-            let urlString = recipeDetails.images[0].hostedLargeURL //recipe.smallImageUrls[0]
-            //urlString = urlString.dropLast(2) + "360"
-            url = URL(string: urlString)
-            
-            backgroundStackView.setBackground()
             recipeRating.text = recipeDetails.rating.likestoString()
             recipeTime.text = recipeDetails.totalTimeInSeconds.secondsToString()
+            
+            let urlString = recipeDetails.images[0].hostedLargeURL //recipe.smallImageUrls[0]
+            //urlString = urlString.dropLast(2) + "360"
+            guard let url = URL(string: urlString) else { return }
+            
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            yummlyService.getImage(url: url) { (result) in
+                DispatchQueue.main.async {
+                    self.activityIndicator.isHidden = true
+                    self.activityIndicator.stopAnimating()
+                    switch result {
+                    case .success(let data):
+                        self.dataImage = data
+                        self.recipeImage.image = UIImage(data: data)
+                    case .failure(_):
+                        self.recipeImage.image = UIImage(named: "Ingredients")
+                    }
+                    self.recipeImage.setGradient()
+                }
+                
+            }
         }
         
-        recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
-        //gradientBackground.setGradientBackground()
-        setGradient()
+//
         
+        //recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
+        //gradientBackground.setGradientBackground()
+        //setGradient()
+        recipeImage.setGradient()
+        //updateFavoriteButton()
+        
+    }
+    
+    private func setFavoriteButton() {
+        if let recipeDetails = recipeDetails {
+            //if (RecipeEntity.fetchRecipe(recipeId: recipeDetails.id) == nil) {
+            if RecipeEntity.isRecipeRegistered(id: recipeDetails.id) {
+                isFavorite = true
+               favoriteButton.tintColor = .green
+            } else {
+                isFavorite = false
+                favoriteButton.tintColor = .white
+            }
+        }
     }
     
     func setGradient() {
@@ -76,11 +121,17 @@ class DetailsViewController: UIViewController {
     */
 
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        //if let recipeDetails = recipeDetails, let image = recipeImage.image {
         if let recipeDetails = recipeDetails {
-            RecipeEntity.add(recipeDetails: recipeDetails, ingredients: ingredients)
+            if isFavorite {
+                RecipeEntity.delete(id: recipeDetails.id)
+            } else {
+                RecipeEntity.add(recipeDetails: recipeDetails, ingredients: ingredients, image: dataImage)
+                //RecipeEntity.add(recipeDetails: recipeDetails, ingredients: ingredients, image: recipeImage.image)
+            }
         }
+        setFavoriteButton()
     }
-    
 }
 
 extension DetailsViewController: UITableViewDataSource {
@@ -97,7 +148,7 @@ extension DetailsViewController: UITableViewDataSource {
         if let recipeDetails = recipeDetails {//
             //recipe.ingredients[indexPath.row] //?.ingredients ingredients[indexPath.row]
             cell.textLabel?.text = "- \(recipeDetails.ingredientLines[indexPath.row])"
-            cell.textLabel?.font = UIFont(name: "Chalkduster", size: 13)
+            cell.textLabel?.font = UIFont(name: Font.reciplease, size: 13)
         }
         return cell
     }

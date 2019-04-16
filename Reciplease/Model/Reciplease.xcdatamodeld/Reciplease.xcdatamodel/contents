@@ -5,10 +5,10 @@
         <relationship name="recipe" maxCount="1" deletionRule="No Action" destinationEntity="RecipeEntity" inverseName="ingredients" inverseEntity="RecipeEntity" syncable="YES"/>
     </entity>
     <entity name="RecipeEntity" representedClassName=".RecipeEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="recipeId" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity" syncable="YES"/>
     </entity>

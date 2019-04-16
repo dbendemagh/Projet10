@@ -20,3 +20,14 @@ struct URLYummly {
     static let appKey = "_app_key=ead08c9a5260d1abdf6673a3fd7bd846"
     static let allowedIngredient = "allowedIngredient="
 }
+
+struct Font {
+    static let reciplease = "Chalkduster"
+}
+
+enum NetworkError : Error {
+    case badURL
+    case httpResponseKO
+    case noData
+    case jsonDecodeError
+}
