@@ -26,8 +26,9 @@ struct Font {
 }
 
 enum NetworkError : Error {
-    case badURL
     case httpResponseKO
+    case incorrectURL
+    case incorrectData
     case noData
     case jsonDecodeError
 }

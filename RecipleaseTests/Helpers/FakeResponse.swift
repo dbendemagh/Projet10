@@ -9,7 +9,7 @@
 import Foundation
 
 struct FakeResponse {
-    var response: HTTPURLResponse?
+    var httpResponse: HTTPURLResponse?
     var data: Data?
     var error: Error?
 }

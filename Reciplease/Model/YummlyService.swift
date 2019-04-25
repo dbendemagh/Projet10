@@ -37,10 +37,19 @@ class YummlyService {
         return url
     }
     
-    func searchRecipes(ingredients: [String], completionHandler: @escaping (Result<Recipes?, Error>) -> Void) {
-        guard let url = createURL(ingredients: ingredients) else { return }
+    func searchRecipes(ingredients: [String], completionHandler: @escaping (Result<Recipes, Error>) -> Void) {
+        guard let url = createURL(ingredients: ingredients) else {
+            completionHandler(.failure(NetworkError.incorrectURL))
+            return
+        }
         
         yummlySession.request(url: url) { responseData in
+            if let error = responseData.error {
+                print(error.localizedDescription)
+                completionHandler(.failure(error))
+                return
+            }
+            
             guard responseData.response?.statusCode == 200 else {
                 completionHandler(.failure(NetworkError.httpResponseKO))
                 return
@@ -61,10 +70,18 @@ class YummlyService {
         }
     }
     
-    func getRecipeDetails(recipeId: String, completionHandler: @escaping (Result<RecipeDetails?, Error>) -> Void) {
-        guard let url = createRecipeDetailsURL(recipeId: recipeId) else { return }
+    func getRecipeDetails(recipeId: String, completionHandler: @escaping (Result<RecipeDetails, Error>) -> Void) {
+        guard let url = createRecipeDetailsURL(recipeId: recipeId) else {
+            completionHandler(.failure(NetworkError.incorrectURL))
+            return
+        }
             
         yummlySession.request(url: url) { responseData in
+            if let error = responseData.error {
+                completionHandler(.failure(error))
+                return
+            }
+
             guard responseData.response?.statusCode == 200 else {
                 completionHandler(.failure(NetworkError.httpResponseKO))
                 return
@@ -86,24 +103,21 @@ class YummlyService {
     }
     
     func getImage(url: URL, completionHandler: @escaping (Result<Data, Error>) -> Void) {
-        let session = URLSession(configuration: .default)
         
-        let task = session.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                completionHandler(.failure(error))
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+        yummlySession.request(url: url) { responseData in
+            guard responseData.response?.statusCode == 200 else {
                 completionHandler(.failure(NetworkError.httpResponseKO))
                 return
             }
-            guard let data = data else {
+            guard let data = responseData.data else {
                 completionHandler(.failure(NetworkError.noData))
                 return
             }
-            
+            guard data.isImage() else {
+                completionHandler(.failure(NetworkError.incorrectData))
+                return
+            }
             completionHandler(.success(data))
         }
-        task.resume()
     }
 }

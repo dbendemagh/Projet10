@@ -19,13 +19,18 @@ class YummlySessionFake: YummlySession {
     }
     
     override func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void) {
-        let httpResponse = fakeResponse.response
+        let httpResponse = fakeResponse.httpResponse
         let data = fakeResponse.data
         let error = fakeResponse.error
-        
-        let result = Request.serializeResponseJSON(options: .allowFragments, response: httpResponse, data: data, error: error)
+        let result: Result<Any> // Alamofire Result
         
         let urlRequest = URLRequest(url: URL(string: "test")!)
+        
+        if let error = error {
+            result = .failure(error)
+        } else {
+            result = .success("ok")
+        }
         
         completionHandler(DataResponse(request: urlRequest, response: httpResponse, data: data, result: result))
     }

@@ -132,6 +132,12 @@ class DetailsViewController: UIViewController {
         }
         setFavoriteButton()
     }
+    
+    @IBAction func getDirectionsButtonPressed(_ sender: Any) {
+        guard let urlString = recipeDetails?.source.sourceRecipeURL else { return }
+        guard let url = URL(string: urlString) else { return }
+        UIApplication.shared.open(url, options: [:])
+    }
 }
 
 extension DetailsViewController: UITableViewDataSource {

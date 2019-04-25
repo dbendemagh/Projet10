@@ -79,7 +79,6 @@ class SearchViewController: UIViewController {
         }
         
         ingredients.sort()
-        
         ingredientsBackup = ingredients
         
         tableView.reloadData()
