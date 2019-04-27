@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
     let defaults = UserDefaults.standard
     let yummlyService = YummlyService()
     
-    var recipes: Recipes?    // = [] 
+    var recipes: Recipes?
     
     var ingredientsBackup: [String] {
         get {
@@ -55,7 +55,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    // display Activity indicator
+    // Display Activity indicator
     private func toggleActivityIndicator(shown: Bool) {
         searchButton.isHidden = shown
         activityIndicator.isHidden = !shown

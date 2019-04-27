@@ -47,12 +47,6 @@ class FavoriteTableViewCell: UITableViewCell {
         } else {
             recipeImage.image = UIImage(named: "Ingredients")
         }
-        //var urlString = recipe.smallImageUrls[0]
-        //urlString = urlString.dropLast(2) + "360"
-        //let url = URL(string: urlString)
-        //let url = URL(string: "")
-        //recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
-        //}
     }
     
     func setGradient() {
@@ -67,18 +61,7 @@ class FavoriteTableViewCell: UITableViewCell {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         
-        gradientView.layer.addSublayer(gradientLayer) //layer.mask = gradientLayer
-        recipeImage.addSubview(gradientView)
-    }
-    
-    func setGradientBackground0() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = recipeImage.bounds
-        gradientLayer.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         gradientView.layer.addSublayer(gradientLayer)
-        gradientView.alpha = 0.6
+        recipeImage.addSubview(gradientView)
     }
 }

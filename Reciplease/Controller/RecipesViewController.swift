@@ -20,9 +20,7 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         tableView.reloadData()
-        
     }
     
     // MARK: - Navigation
@@ -56,9 +54,7 @@ extension RecipesViewController: UITableViewDelegate {
         let recipeId = recipes[indexPath.row].id
         ingredients = recipes[indexPath.row].ingredients
         
-        //toggleActivityIndicator(shown: true)
         yummlyService.getRecipeDetails(recipeId: recipeId) { (result) in
-            //self.toggleActivityIndicator(shown: false)
             switch result {
             case .success(let recipeDetails):
                 self.recipeDetails = recipeDetails
@@ -67,8 +63,5 @@ extension RecipesViewController: UITableViewDelegate {
                 self.displayAlert(title: "Network error", message: "Cannot retrieve recipe details")
             }
         }
-        
-        //performSegue(withIdentifier: "DetailsVCSegue", sender: self)
-        
     }
 }

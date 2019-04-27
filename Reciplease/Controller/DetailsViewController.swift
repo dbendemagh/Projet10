@@ -41,15 +41,13 @@ class DetailsViewController: UIViewController {
         
         ingredientsTitle.font = UIFont(name: Font.reciplease, size: 17)
         backgroundStackView.setBackground()
-        //var url = URL(string: "")
         
         if let recipeDetails = recipeDetails {
             recipeName.text = recipeDetails.name
             recipeRating.text = recipeDetails.rating.likestoString()
             recipeTime.text = recipeDetails.totalTimeInSeconds.secondsToString()
             
-            let urlString = recipeDetails.images[0].hostedLargeURL //recipe.smallImageUrls[0]
-            //urlString = urlString.dropLast(2) + "360"
+            let urlString = recipeDetails.images[0].hostedLargeURL
             guard let url = URL(string: urlString) else { return }
             
             activityIndicator.isHidden = false
@@ -71,19 +69,11 @@ class DetailsViewController: UIViewController {
             }
         }
         
-//
-        
-        //recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
-        //gradientBackground.setGradientBackground()
-        //setGradient()
         recipeImage.setGradient()
-        //updateFavoriteButton()
-        
     }
     
     private func setFavoriteButton() {
         if let recipeDetails = recipeDetails {
-            //if (RecipeEntity.fetchRecipe(recipeId: recipeDetails.id) == nil) {
             if RecipeEntity.isRecipeRegistered(id: recipeDetails.id) {
                 isFavorite = true
                favoriteButton.tintColor = .green
@@ -106,7 +96,7 @@ class DetailsViewController: UIViewController {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         
-        gradientView.layer.addSublayer(gradientLayer) //layer.mask = gradientLayer
+        gradientView.layer.addSublayer(gradientLayer)
         recipeImage.addSubview(gradientView)
     }
     
@@ -121,13 +111,11 @@ class DetailsViewController: UIViewController {
     */
 
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
-        //if let recipeDetails = recipeDetails, let image = recipeImage.image {
         if let recipeDetails = recipeDetails {
             if isFavorite {
                 RecipeEntity.delete(id: recipeDetails.id)
             } else {
                 RecipeEntity.add(recipeDetails: recipeDetails, ingredients: ingredients, image: dataImage)
-                //RecipeEntity.add(recipeDetails: recipeDetails, ingredients: ingredients, image: recipeImage.image)
             }
         }
         setFavoriteButton()
@@ -151,8 +139,7 @@ extension DetailsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-        if let recipeDetails = recipeDetails {//
-            //recipe.ingredients[indexPath.row] //?.ingredients ingredients[indexPath.row]
+        if let recipeDetails = recipeDetails {
             cell.textLabel?.text = "- \(recipeDetails.ingredientLines[indexPath.row])"
             cell.textLabel?.font = UIFont(name: Font.reciplease, size: 13)
         }

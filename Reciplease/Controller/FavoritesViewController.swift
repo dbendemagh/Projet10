@@ -56,13 +56,6 @@ extension FavoritesViewController: UITableViewDataSource {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let recipeId = favoriteRecipes[indexPath.row].recipeId
-        
-        
-                
         self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
-        
-        
-        //performSegue(withIdentifier: "DetailsVCSegue", sender: self)
-        
     }
 }

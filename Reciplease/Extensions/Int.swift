@@ -9,6 +9,7 @@
 import Foundation
 
 extension Int {
+    // Number of likes
     func likestoString() -> String {
         if self > 1000 {
             let floatLikes: Float = Float(self) / 1000
@@ -18,6 +19,7 @@ extension Int {
         }
     }
     
+    // Cooking time
     func secondsToString() -> String {
         let hours: Int = self / 3600
         let minutes: Int = (self / 60) % 60

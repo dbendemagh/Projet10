@@ -11,9 +11,6 @@ import UIKit
 
 extension UIImageView {
     func setGradient() {
-        //let width = size.width
-        //let height = size.height
-        //let gradientView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: size)) //UIView(frame: )
         let gradientView = UIView(frame: bounds)
         gradientView.backgroundColor = .clear
         gradientView.alpha = 0.7
@@ -25,7 +22,6 @@ extension UIImageView {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         
-        gradientView.layer.addSublayer(gradientLayer) //layer.mask = gradientLayer
-        // .addSubview(gradientView)
+        gradientView.layer.addSublayer(gradientLayer)
         addSubview(gradientView)
     }}

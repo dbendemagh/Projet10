@@ -44,28 +44,28 @@ class YummlyService {
         }
         
         yummlySession.request(url: url) { responseData in
-            if let error = responseData.error {
-                print(error.localizedDescription)
+            switch responseData.result {
+            case .success:
+                guard responseData.response?.statusCode == 200 else {
+                    completionHandler(.failure(NetworkError.httpResponseKO))
+                    return
+                }
+                guard let data = responseData.data else {
+                    completionHandler(.failure(NetworkError.noData))
+                    return
+                }
+                
+                do {
+                    let recipes = try JSONDecoder().decode(Recipes.self, from: data)
+                    completionHandler(.success(recipes))
+                }
+                catch {
+                    print(error)
+                    completionHandler(.failure(NetworkError.jsonDecodeError))
+                }
+            case .failure(let error):
                 completionHandler(.failure(error))
                 return
-            }
-            
-            guard responseData.response?.statusCode == 200 else {
-                completionHandler(.failure(NetworkError.httpResponseKO))
-                return
-            }
-            guard let data = responseData.data else {
-                completionHandler(.failure(NetworkError.noData))
-                return
-            }
-            
-            do {
-                let recipes = try JSONDecoder().decode(Recipes.self, from: data)
-                completionHandler(.success(recipes))
-            }
-            catch {
-                print(error)
-                completionHandler(.failure(NetworkError.jsonDecodeError))
             }
         }
     }
@@ -75,29 +75,30 @@ class YummlyService {
             completionHandler(.failure(NetworkError.incorrectURL))
             return
         }
-            
+        
         yummlySession.request(url: url) { responseData in
-            if let error = responseData.error {
+            switch responseData.result {
+            case .success:
+                guard responseData.response?.statusCode == 200 else {
+                    completionHandler(.failure(NetworkError.httpResponseKO))
+                    return
+                }
+                guard let data = responseData.data else {
+                    completionHandler(.failure(NetworkError.noData))
+                    return
+                }
+    
+                do {
+                    let recipeDetails = try JSONDecoder().decode(RecipeDetails.self, from: data)
+                    completionHandler(.success(recipeDetails))
+                }
+                catch {
+                    print(error)
+                    completionHandler(.failure(NetworkError.jsonDecodeError))
+                }
+            case .failure(let error):
                 completionHandler(.failure(error))
                 return
-            }
-
-            guard responseData.response?.statusCode == 200 else {
-                completionHandler(.failure(NetworkError.httpResponseKO))
-                return
-            }
-            guard let data = responseData.data else {
-                completionHandler(.failure(NetworkError.noData))
-                return
-            }
-            
-            do {
-                let recipeDetails = try JSONDecoder().decode(RecipeDetails.self, from: data)
-                completionHandler(.success(recipeDetails))
-            }
-            catch {
-                print(error)
-                completionHandler(.failure(NetworkError.jsonDecodeError))
             }
         }
     }
