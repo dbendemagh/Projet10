@@ -9,11 +9,11 @@
 import Foundation
 
 // Load json file (or image)
-class FakeDataRecepted {
+class FakeData {
     let correctData: Data
     
     init(file: String, fileExt: String) {
-        let bundle = Bundle(for: FakeDataRecepted.self)
+        let bundle = Bundle(for: FakeData.self)
         let url = bundle.url(forResource: file, withExtension: fileExt)
         correctData = try! Data(contentsOf: url!)
     }

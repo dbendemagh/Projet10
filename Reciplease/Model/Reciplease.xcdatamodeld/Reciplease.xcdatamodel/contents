@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="IngredientEntity" representedClassName=".IngredientEntity" syncable="YES" codeGenerationType="category">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="recipe" maxCount="1" deletionRule="No Action" destinationEntity="RecipeEntity" inverseName="ingredients" inverseEntity="RecipeEntity" syncable="YES"/>
+        <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredients" inverseEntity="RecipeEntity" syncable="YES"/>
     </entity>
     <entity name="RecipeEntity" representedClassName=".RecipeEntity" syncable="YES" codeGenerationType="category">
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -13,7 +13,7 @@
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity" syncable="YES"/>
     </entity>
     <elements>
+        <element name="IngredientEntity" positionX="-54" positionY="18" width="128" height="73"/>
         <element name="RecipeEntity" positionX="-464" positionY="-28" width="128" height="135"/>
-        <element name="IngredientEntity" positionX="-54" positionY="18" width="128" height="75"/>
     </elements>
 </model>

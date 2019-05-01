@@ -21,6 +21,12 @@ struct URLYummly {
     static let allowedIngredient = "allowedIngredient="
 }
 
+struct File {
+    static let recipes = "Recipes"
+    static let recipeDetails = "RecipeDetails"
+    static let defaultImage = "Ingredients"
+}
+
 struct Font {
     static let reciplease = "Chalkduster"
 }

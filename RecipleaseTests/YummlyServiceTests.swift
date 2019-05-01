@@ -55,8 +55,8 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testSearchRecipesShouldPostFailedCallbackIfIncorrectResponse() {
-        let fakeDataRecepted = FakeDataRecepted(file: "Recipes", fileExt: "json")
-        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeDataRecepted.correctData, error: nil)
+        let fakeData = FakeData(file: "Recipes", fileExt: "json")
+        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
 
@@ -111,8 +111,8 @@ class YummlyServiceTests: XCTestCase {
     }
 
     func testSearchRecipesShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
-        let fakeDataRecepted = FakeDataRecepted(file: "Recipes", fileExt: "json")
-        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeDataRecepted.correctData, error: nil)
+        let fakeData = FakeData(file: File.recipes, fileExt: "json")
+        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
 
@@ -123,7 +123,7 @@ class YummlyServiceTests: XCTestCase {
                 XCTFail()
                 return
             }
-            XCTAssertEqual(recipes.matches[0].sourceDisplayName, "Tatyanas Everyday Food")
+            XCTAssertEqual(recipes.matches[0].recipeName, "Tatyanas Everyday Food")
             expectation.fulfill()
         }
 
@@ -169,8 +169,8 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testRecipeDetailsShouldPostFailedCallbackIfIncorrectResponse() {
-        let fakeDataRecepted = FakeDataRecepted(file: "RecipeDetails", fileExt: "json")
-        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeDataRecepted.correctData, error: nil)
+        let fakeData = FakeData(file: File.recipeDetails, fileExt: "json")
+        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
         
@@ -223,8 +223,8 @@ class YummlyServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     func testGetRecipeDetailsShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
-        let fakeDataRecepted = FakeDataRecepted(file: "RecipeDetails", fileExt: "json")
-        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeDataRecepted.correctData, error: nil)
+        let fakeData = FakeData(file: File.recipeDetails, fileExt: "json")
+        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
 
@@ -264,8 +264,8 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testGetImageShouldPostFailedCallbackIfIncorrectResponse() {
-        let fakeDataRecepted = FakeDataRecepted(file: "Recipes", fileExt: "json")
-        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeDataRecepted.correctData, error: nil)
+        let fakeData = FakeData(file: File.defaultImage, fileExt: "png")
+        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
         
@@ -319,8 +319,8 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testGetImageShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
-        let fakeDataRecepted = FakeDataRecepted(file: "Ingredients", fileExt: "png")
-        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeDataRecepted.correctData, error: nil)
+        let fakeData = FakeData(file: File.defaultImage, fileExt: "png")
+        let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
         
