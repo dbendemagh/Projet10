@@ -10,13 +10,33 @@ import Foundation
 
 class YummlyService {
     private var yummlySession: YummlySession
+    var YummlyId = ""
+    var YummlyKey = ""
     
     init(yummlySession: YummlySession = YummlySession()) {
         self.yummlySession = yummlySession
+        YummlyId = getApiKey(key: "YummlyId")
+        YummlyKey = getApiKey(key: "YummlyKey")
     }
     
-    func createURL(ingredients: [String]) -> URL? {
-        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + "&" + URLYummly.appKey + "&"
+    // Get API Key from Apikeys.plist
+    func getApiKey(key: String) -> String {
+        var apiKey = ""
+        
+        guard let path = Bundle.main.path(forResource: "ApiKeys", ofType: "plist") else {
+            fatalError("ApiKeys.plist not found")
+        }
+        
+        let url = URL(fileURLWithPath: path)
+        if let obj = NSDictionary(contentsOf: url), let value = obj.value(forKey: key) {
+            apiKey = value as? String ?? ""
+        }
+        
+        return apiKey
+    }
+    
+    func createSearchRecipesURL(ingredients: [String]) -> URL? {
+        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + YummlyId + "&" + URLYummly.appKey + YummlyKey + "&"
         
         for ingredient in ingredients {
             urlString += URLYummly.allowedIngredient + ingredient.lowercased() + "&"
@@ -30,7 +50,7 @@ class YummlyService {
     }
     
     func createRecipeDetailsURL(recipeId: String) -> URL? {
-        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + "&" + URLYummly.appKey
+        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + YummlyId + "&" + URLYummly.appKey + YummlyKey
         
         guard let url = URL(string: urlString) else { return nil }
         
@@ -38,7 +58,7 @@ class YummlyService {
     }
     
     func searchRecipes(ingredients: [String], completionHandler: @escaping (Result<Recipes, Error>) -> Void) {
-        guard let url = createURL(ingredients: ingredients) else {
+        guard let url = createSearchRecipesURL(ingredients: ingredients) else {
             completionHandler(.failure(NetworkError.incorrectURL))
             return
         }

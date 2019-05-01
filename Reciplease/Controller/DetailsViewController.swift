@@ -76,7 +76,7 @@ class DetailsViewController: UIViewController {
         if let recipeDetails = recipeDetails {
             if RecipeEntity.isRecipeRegistered(id: recipeDetails.id) {
                 isFavorite = true
-               favoriteButton.tintColor = .green
+               favoriteButton.tintColor = .recipleaseGreen
             } else {
                 isFavorite = false
                 favoriteButton.tintColor = .white

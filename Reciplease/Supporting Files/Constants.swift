@@ -14,10 +14,10 @@ struct UserDefaultsKeys {
 
 struct URLYummly {
     static let endPoint = "https://api.yummly.com/v1/api/"
+    static let appId = "_app_id="
+    static let appKey = "_app_key="
     static let recipes = "recipes?"
     static let recipe = "recipe/"
-    static let appId = "_app_id=c7de48f7"
-    static let appKey = "_app_key=ead08c9a5260d1abdf6673a3fd7bd846"
     static let allowedIngredient = "allowedIngredient="
 }
 
@@ -31,6 +31,9 @@ struct Font {
     static let reciplease = "Chalkduster"
 }
 
+struct Colors {
+    
+}
 enum NetworkError : Error {
     case httpResponseKO
     case incorrectURL
