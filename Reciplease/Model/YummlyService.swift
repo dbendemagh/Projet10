@@ -10,13 +10,13 @@ import Foundation
 
 class YummlyService {
     private var yummlySession: YummlySession
-    var YummlyId = ""
-    var YummlyKey = ""
+    var yummlyId = ""
+    var yummlyKey = ""
     
     init(yummlySession: YummlySession = YummlySession()) {
         self.yummlySession = yummlySession
-        YummlyId = getApiKey(key: "YummlyId")
-        YummlyKey = getApiKey(key: "YummlyKey")
+        yummlyId = getApiKey(key: "YummlyId")
+        yummlyKey = getApiKey(key: "YummlyKey")
     }
     
     // Get API Key from Apikeys.plist
@@ -36,7 +36,7 @@ class YummlyService {
     }
     
     func createSearchRecipesURL(ingredients: [String]) -> URL? {
-        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + YummlyId + "&" + URLYummly.appKey + YummlyKey + "&"
+        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + yummlyId + "&" + URLYummly.appKey + yummlyKey + "&"
         
         for ingredient in ingredients {
             urlString += URLYummly.allowedIngredient + ingredient.lowercased() + "&"
@@ -50,7 +50,7 @@ class YummlyService {
     }
     
     func createRecipeDetailsURL(recipeId: String) -> URL? {
-        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + YummlyId + "&" + URLYummly.appKey + YummlyKey
+        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + yummlyId + "&" + URLYummly.appKey + yummlyKey
         
         guard let url = URL(string: urlString) else { return nil }
         
