@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import UIKit
 import CoreData
 
 class RecipeEntity: NSManagedObject {
@@ -17,14 +16,7 @@ class RecipeEntity: NSManagedObject {
         guard let favoriteRecipes = try? viewContext.fetch(request) else { return [] }
         return favoriteRecipes
     }
-    
-//    static func fetchRecipe(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipeId: String) -> RecipeEntity? {
-//        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-//        request.predicate = NSPredicate(format: "id == %@", recipeId)
-//        guard let favoriteRecipe = try? viewContext.fetch(request).first else { return nil }
-//        return favoriteRecipe
-//    }
-    
+        
     static func isRecipeRegistered(viewContext: NSManagedObjectContext = AppDelegate.viewContext, id: String) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
@@ -41,10 +33,9 @@ class RecipeEntity: NSManagedObject {
         if let image = image {
             recipe.image = image
         }
-        
         print(ingredients)
         IngredientEntity.add(viewContext: viewContext, recipe: recipe, ingredients: ingredients)
-        
+        IngredientDetailEntity.add(viewContext: viewContext, recipe: recipe, ingredientsDetail: recipeDetails.ingredientLines)
         try? viewContext.save()
     }
     
@@ -53,8 +44,7 @@ class RecipeEntity: NSManagedObject {
         request.predicate = NSPredicate(format: "id == %@", id)
         if let recipe = try? viewContext.fetch(request).first {
             viewContext.delete(recipe)
-            // Les ingrédients sont supprimés automatiquement
-            //IngredientEntity.delete(viewContext: viewContext, recipe: recipe)
+            
             try? viewContext.save()
         }
     }
@@ -63,12 +53,8 @@ class RecipeEntity: NSManagedObject {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "RecipeEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         
-        do {
-            try viewContext.execute(deleteRequest)
-            try viewContext.save()
-        } catch  {
-            print("Delete all recipes - Error")
-        }
+        let _ = try? viewContext.execute(deleteRequest)
+        try? viewContext.save()
     }
 }
 

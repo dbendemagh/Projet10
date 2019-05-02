@@ -24,4 +24,5 @@ extension UIImageView {
         
         gradientView.layer.addSublayer(gradientLayer)
         addSubview(gradientView)
-    }}
+    }
+}

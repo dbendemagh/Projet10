@@ -13,7 +13,6 @@ struct Recipes: Decodable {
 }
 
 struct Recipe: Decodable {
-    //let sourceDisplayName: String
     let ingredients: [String]
     let id: String
     let smallImageUrls: [String]

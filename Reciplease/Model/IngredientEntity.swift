@@ -7,38 +7,24 @@
 //
 
 import Foundation
-
 import CoreData
 
 class IngredientEntity: NSManagedObject {
     static func fetchIngredients(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity) -> [IngredientEntity] {
         let request: NSFetchRequest<IngredientEntity> = IngredientEntity.fetchRequest()
         request.predicate = NSPredicate(format: "recipe == %@", recipe)
+        request.sortDescriptors = [NSSortDescriptor(key: "displayOrder", ascending: true)]
         guard let ingredients = try? viewContext.fetch(request) else { return [] }
         return ingredients
     }
     
     static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity, ingredients: [String]) {
-        
-        for currentIngredient in ingredients {
+        //for currentIngredient in ingredients {
+        for index in 0...ingredients.count - 1 {
             let ingredient = IngredientEntity(context: viewContext)
-            ingredient.name = currentIngredient
+            ingredient.name = ingredients[index]
+            ingredient.displayOrder = Int32(index)
             ingredient.recipe = recipe
-        }
-    }
-    
-    // Cascade activé ok
-    static func delete(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity) {
-        let request: NSFetchRequest<IngredientEntity> = IngredientEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "recipe == %@", recipe)
-        
-        
-        if let ingredients = try? viewContext.fetch(request) {
-            for ingredient in ingredients {
-                viewContext.delete(ingredient)
-            }
-            
-            try? viewContext.save()
         }
     }
     
@@ -46,10 +32,7 @@ class IngredientEntity: NSManagedObject {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "IngredientEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         
-        do {
-            try viewContext.execute(deleteRequest)
-            try viewContext.save()
-        } catch  {
-            print("Delete all ingredients - Error")
-        }
-    }}
+        let _ = try? viewContext.execute(deleteRequest)
+        try? viewContext.save()
+    }
+}

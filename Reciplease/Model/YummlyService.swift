@@ -10,33 +10,14 @@ import Foundation
 
 class YummlyService {
     private var yummlySession: YummlySession
-    var yummlyId = ""
-    var yummlyKey = ""
+    var apiKeys = ApiKeysManager()
     
     init(yummlySession: YummlySession = YummlySession()) {
         self.yummlySession = yummlySession
-        yummlyId = getApiKey(key: "YummlyId")
-        yummlyKey = getApiKey(key: "YummlyKey")
-    }
-    
-    // Get API Key from Apikeys.plist
-    func getApiKey(key: String) -> String {
-        var apiKey = ""
-        
-        guard let path = Bundle.main.path(forResource: "ApiKeys", ofType: "plist") else {
-            fatalError("ApiKeys.plist not found")
-        }
-        
-        let url = URL(fileURLWithPath: path)
-        if let obj = NSDictionary(contentsOf: url), let value = obj.value(forKey: key) {
-            apiKey = value as? String ?? ""
-        }
-        
-        return apiKey
     }
     
     func createSearchRecipesURL(ingredients: [String]) -> URL? {
-        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + yummlyId + "&" + URLYummly.appKey + yummlyKey + "&"
+        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + apiKeys.yummlyApiId + "&" + URLYummly.appKey + apiKeys.yummlyApiKey + "&"
         
         for ingredient in ingredients {
             urlString += URLYummly.allowedIngredient + ingredient.lowercased() + "&"
@@ -50,7 +31,7 @@ class YummlyService {
     }
     
     func createRecipeDetailsURL(recipeId: String) -> URL? {
-        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + yummlyId + "&" + URLYummly.appKey + yummlyKey
+        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + apiKeys.yummlyApiId + "&" + URLYummly.appKey + apiKeys.yummlyApiKey
         
         guard let url = URL(string: urlString) else { return nil }
         

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="IngredientDetailEntity" representedClassName=".IngredientDetailEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredientsDetail" inverseEntity="RecipeEntity" syncable="YES"/>
+    </entity>
     <entity name="IngredientEntity" representedClassName=".IngredientEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recipe" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredients" inverseEntity="RecipeEntity" syncable="YES"/>
     </entity>
@@ -11,9 +17,11 @@
         <attribute name="rating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity" syncable="YES"/>
+        <relationship name="ingredientsDetail" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientDetailEntity" inverseName="recipe" inverseEntity="IngredientDetailEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="IngredientEntity" positionX="-54" positionY="18" width="128" height="73"/>
-        <element name="RecipeEntity" positionX="-464" positionY="-28" width="128" height="135"/>
+        <element name="IngredientEntity" positionX="-157.9453125" positionY="-89.82421875" width="128" height="88"/>
+        <element name="RecipeEntity" positionX="-464" positionY="-28" width="128" height="148"/>
+        <element name="IngredientDetailEntity" positionX="-161.0390625" positionY="71.69140625" width="180.9921875" height="88"/>
     </elements>
 </model>

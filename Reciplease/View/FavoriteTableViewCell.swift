@@ -21,10 +21,6 @@ class FavoriteTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //setGradientBackground()
-        //backgroundStackView.setBackground()
-        //gradientView.setGradientBackground()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,8 +36,8 @@ class FavoriteTableViewCell: UITableViewCell {
         let ingredients = recipe.ingredients?.allObjects as! [IngredientEntity]
         print(ingredients)
         recipeIngredients.text = ingredients.map({$0.name ?? ""}).joined(separator: ", ")
-        recipeTime.text = recipe.time   // .totalTimeInSeconds.secondsToString()
-        recipeRating.text = recipe.rating //.rating.likestoString()
+        recipeTime.text = recipe.time
+        recipeRating.text = recipe.rating
         if let data = recipe.image as Data? {
             recipeImage.image = UIImage(data: data)
         } else {

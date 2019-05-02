@@ -13,7 +13,9 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var favoriteRecipes: [RecipeEntity] = []
-
+    var ingredients: [IngredientEntity]?
+    var ingredientsDetail: [IngredientDetailEntity]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,6 +58,9 @@ extension FavoritesViewController: UITableViewDataSource {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let recipeId = favoriteRecipes[indexPath.row].recipeId
+        let recipe = favoriteRecipes[indexPath.row]
+        ingredients = IngredientEntity.fetchIngredients(recipe: recipe)
+        //ingredientsDetail = IngredientDetailEntity.
         self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
     }
 }

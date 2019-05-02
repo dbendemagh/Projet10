@@ -62,6 +62,14 @@ class CoreDataTests: XCTestCase {
         
         let ingredients = IngredientEntity.fetchIngredients(viewContext: mockContainer.viewContext, recipe: recipes[0])
         XCTAssertEqual(ingredients.count, 20)
+        XCTAssertEqual(ingredients[0].name, "olive oil")
+        XCTAssertEqual(ingredients[1].name, "eggs")
+        
+        let ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(viewContext: mockContainer.viewContext, recipe: recipes[0])
+        //let ingredients = IngredientDetailEntity.fe fetchIngredients(viewContext: mockContainer.viewContext, recipe: recipes[0])
+        XCTAssertEqual(ingredientsDetail.count, 20)
+        XCTAssertEqual(ingredientsDetail[0].dosage, "5 tbsp olive oil")
+        XCTAssertEqual(ingredientsDetail[1].dosage, "2 eggs lightly beaten")
     }
     
     func testIsRegistered() {
@@ -75,6 +83,8 @@ class CoreDataTests: XCTestCase {
         let recipe = recipes[0]
         var ingredients = IngredientEntity.fetchIngredients(viewContext: mockContainer.viewContext, recipe: recipe)
         XCTAssertEqual(ingredients.count, 20)
+        var ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(viewContext: mockContainer.viewContext, recipe: recipe)
+        XCTAssertEqual(ingredients.count, 20)
         
         RecipeEntity.delete(viewContext: mockContainer.viewContext, id: recipes[0].id!)
         
@@ -82,6 +92,8 @@ class CoreDataTests: XCTestCase {
         XCTAssertEqual(recipes.count, 0)
         ingredients = IngredientEntity.fetchIngredients(viewContext: mockContainer.viewContext, recipe: recipe)
         XCTAssertEqual(ingredients.count, 0)
+        ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(viewContext: mockContainer.viewContext, recipe: recipe)
+        XCTAssertEqual(ingredientsDetail.count, 0)
         
     }
 }

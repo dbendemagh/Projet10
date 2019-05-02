@@ -103,7 +103,6 @@ class YummlyServiceTests: XCTestCase {
                 XCTFail()
                 return
             }
-            //XCTAssertNotNil(error as? NetworkError)
             expectation.fulfill()
         }
 
