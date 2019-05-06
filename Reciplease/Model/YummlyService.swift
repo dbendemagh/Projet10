@@ -17,7 +17,7 @@ class YummlyService {
     }
     
     func createSearchRecipesURL(ingredients: [String]) -> URL? {
-        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + apiKeys.yummlyApiId + "&" + URLYummly.appKey + apiKeys.yummlyApiKey + "&"
+        var urlString: String = URLYummly.endPoint + URLYummly.recipes + URLYummly.appId + apiKeys.yummlyId + "&" + URLYummly.appKey + apiKeys.yummlyKey + "&"
         
         for ingredient in ingredients {
             urlString += URLYummly.allowedIngredient + ingredient.lowercased() + "&"
@@ -31,14 +31,14 @@ class YummlyService {
     }
     
     func createRecipeDetailsURL(recipeId: String) -> URL? {
-        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + apiKeys.yummlyApiId + "&" + URLYummly.appKey + apiKeys.yummlyApiKey
-        
+        let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + apiKeys.yummlyId + "&" + URLYummly.appKey + apiKeys.yummlyKey
+        print(urlString)
         guard let url = URL(string: urlString) else { return nil }
         
         return url
     }
     
-    func searchRecipes(ingredients: [String], completionHandler: @escaping (Result<Recipes, Error>) -> Void) {
+    func searchRecipes(ingredients: [String], completionHandler: @escaping (Result<YummlyRecipes, Error>) -> Void) {
         guard let url = createSearchRecipesURL(ingredients: ingredients) else {
             completionHandler(.failure(NetworkError.incorrectURL))
             return
@@ -57,7 +57,7 @@ class YummlyService {
                 }
                 
                 do {
-                    let recipes = try JSONDecoder().decode(Recipes.self, from: data)
+                    let recipes = try JSONDecoder().decode(YummlyRecipes.self, from: data)
                     completionHandler(.success(recipes))
                 }
                 catch {
@@ -71,7 +71,7 @@ class YummlyService {
         }
     }
     
-    func getRecipeDetails(recipeId: String, completionHandler: @escaping (Result<RecipeDetails, Error>) -> Void) {
+    func getRecipeDetails(recipeId: String, completionHandler: @escaping (Result<YummlyRecipeDetails, Error>) -> Void) {
         guard let url = createRecipeDetailsURL(recipeId: recipeId) else {
             completionHandler(.failure(NetworkError.incorrectURL))
             return
@@ -90,7 +90,7 @@ class YummlyService {
                 }
     
                 do {
-                    let recipeDetails = try JSONDecoder().decode(RecipeDetails.self, from: data)
+                    let recipeDetails = try JSONDecoder().decode(YummlyRecipeDetails.self, from: data)
                     completionHandler(.success(recipeDetails))
                 }
                 catch {

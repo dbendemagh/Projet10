@@ -8,55 +8,20 @@
 
 import Foundation
 
-struct RecipeDetails: Decodable {
-    //let yield: String
-    //let nutritionEstimates: [JSONAny]
-    let totalTime: String
+struct YummlyRecipeDetails: Decodable {
     let images: [Image]
     let name: String
     let source: Source
     let id: String
     let ingredientLines: [String]
-    let numberOfServings, totalTimeInSeconds: Int
-    //let attributes: Attributes0
-    //let cookTimeInSeconds: Int
-    let flavors: Flavors
+    let totalTimeInSeconds: Int
     let rating: Int
 }
 
-struct Attributes0: Decodable {
-    let course: [String]
-}
-
-struct Attribution: Decodable {
-    let html: String
-    let url: String // Directions
-    let text: String
-    let logo: String
-}
-
-struct Flavors: Decodable {
-}
-
 struct Image: Decodable {
-    let hostedSmallURL, hostedMediumURL, hostedLargeURL: String
-    let imageUrlsBySize: [String: String]
-    
-    enum CodingKeys: String, CodingKey {
-        case hostedSmallURL = "hostedSmallUrl"
-        case hostedMediumURL = "hostedMediumUrl"
-        case hostedLargeURL = "hostedLargeUrl"
-        case imageUrlsBySize
-    }
+    let hostedLargeUrl: String
 }
 
 struct Source: Decodable {
-    let sourceDisplayName, sourceSiteURL: String
-    let sourceRecipeURL: String
-    
-    enum CodingKeys: String, CodingKey {
-        case sourceDisplayName
-        case sourceSiteURL = "sourceSiteUrl"
-        case sourceRecipeURL = "sourceRecipeUrl"
-    }
+    let sourceRecipeUrl: String
 }

@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
     let defaults = UserDefaults.standard
     let yummlyService = YummlyService()
     
-    var recipes: Recipes?
+    var recipes: YummlyRecipes?
     
     var ingredientsBackup: [String] {
         get {

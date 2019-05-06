@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Recipes: Decodable {
+struct YummlyRecipes: Decodable {
     let matches: [Recipe]
 }
 

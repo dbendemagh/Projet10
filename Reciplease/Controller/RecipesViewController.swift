@@ -13,8 +13,12 @@ class RecipesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var recipes: [Recipe] = []
-    var recipeDetails: RecipeDetails?
-    var ingredients: [String] = []
+    var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
+    
+    //var recipeDetails: RecipeDetails?
+    //var ingredients: [String] = []
+    //var recipeImage: Data?
+    
     let yummlyService = YummlyService()
     
     override func viewDidLoad() {
@@ -28,7 +32,8 @@ class RecipesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailsVC = segue.destination as? DetailsViewController {
             detailsVC.recipeDetails = recipeDetails
-            detailsVC.ingredients = ingredients
+            //detailsVC.ingredients = ingredients
+            
         }
     }
 }
@@ -51,13 +56,22 @@ extension RecipesViewController: UITableViewDataSource {
 
 extension RecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeId = recipes[indexPath.row].id
-        ingredients = recipes[indexPath.row].ingredients
+        let recipe = recipes[indexPath.row]
+        //ingredients = recipes[indexPath.row].ingredients
         
-        yummlyService.getRecipeDetails(recipeId: recipeId) { (result) in
+        yummlyService.getRecipeDetails(recipeId: recipe.id) { (result) in
             switch result {
             case .success(let recipeDetails):
-                self.recipeDetails = recipeDetails
+                self.recipeDetails = RecipeDetails(name: recipeDetails.name,
+                                                    id: recipeDetails.id,
+                                                    time: recipeDetails.totalTimeInSeconds.secondsToString(),
+                                                    rating: recipeDetails.rating.likestoString(),
+                                                    urlImage: recipeDetails.images[0].hostedLargeUrl,
+                                                    image: nil,
+                                                    ingredients: recipe.ingredients,
+                                                    ingredientsDetail: recipeDetails.ingredientLines,
+                                                    urlDirections: recipeDetails.source.sourceRecipeUrl
+                                                    )
                 self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
             case .failure(_):
                 self.displayAlert(title: "Network error", message: "Cannot retrieve recipe details")

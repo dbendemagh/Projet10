@@ -292,6 +292,7 @@
                     <navigationItem key="navigationItem" id="YQO-tt-Lgh"/>
                     <connections>
                         <outlet property="tableView" destination="Gfj-W4-9FF" id="hle-nv-flS"/>
+                        <segue destination="Sai-Zy-YO9" kind="show" identifier="DetailsVCSegue" id="puY-Ag-qqR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gxn-Tv-AYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oC-4V-nEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3657.971014492754" y="131.91964285714286"/>
+            <point key="canvasLocation" x="3700" y="428"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="k5a-Ou-Csq">
@@ -640,9 +641,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Favorite" width="16" height="16"/>
+        <image name="Favorite" width="32" height="32"/>
         <image name="Like" width="26" height="26"/>
         <image name="Search" width="25" height="25"/>
         <image name="Time" width="26" height="26"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="puY-Ag-qqR"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -24,18 +24,19 @@ class RecipeEntity: NSManagedObject {
         return false
     }
     
-    static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipeDetails: RecipeDetails, ingredients: [String], image: Data?) {
+    static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipeDetails: RecipeDetails) { //}, ingredients: [String]) { //}, image: Data?) {
         let recipe = RecipeEntity(context: viewContext)
         recipe.name = recipeDetails.name
         recipe.id = recipeDetails.id
-        recipe.rating = recipeDetails.rating.likestoString()
-        recipe.time = recipeDetails.totalTimeInSeconds.secondsToString()
-        if let image = image {
+        recipe.rating = recipeDetails.rating //.likestoString()
+        recipe.time = recipeDetails.time // totalTimeInSeconds.secondsToString()
+        recipe.urlDirections = recipeDetails.urlDirections
+        if let image = recipeDetails.image {
             recipe.image = image
         }
-        print(ingredients)
-        IngredientEntity.add(viewContext: viewContext, recipe: recipe, ingredients: ingredients)
-        IngredientDetailEntity.add(viewContext: viewContext, recipe: recipe, ingredientsDetail: recipeDetails.ingredientLines)
+        //print(ingredients)
+        IngredientEntity.add(viewContext: viewContext, recipe: recipe, ingredients: recipeDetails.ingredients)
+        IngredientDetailEntity.add(viewContext: viewContext, recipe: recipe, ingredientsDetail: recipeDetails.ingredientsDetail)
         try? viewContext.save()
     }
     

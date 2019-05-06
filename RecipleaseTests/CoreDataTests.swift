@@ -16,8 +16,8 @@ class CoreDataTests: XCTestCase {
     let fakeDataImage = FakeData(file: File.defaultImage, fileExt: "png")
     let id = "Crispy-Sesame-Chicken-With-a-Sticky-Asian-Sauce-2597971"
     
-    var fakeRecipes: Recipes?
-    var fakeRecipeDetails: RecipeDetails?
+    var fakeRecipes: YummlyRecipes?
+    var fakeRecipeDetails: YummlyRecipeDetails?
     var fakeRecipeEntity: RecipeEntity?
     
     lazy var mockContainer: NSPersistentContainer = {
@@ -30,8 +30,8 @@ class CoreDataTests: XCTestCase {
     }()
     
     override func setUp() {
-        fakeRecipes = try? JSONDecoder().decode(Recipes.self, from: fakeDataRecipe.correctData)
-        fakeRecipeDetails = try? JSONDecoder().decode(RecipeDetails.self, from: fakeDataRecipeDetails.correctData)
+        fakeRecipes = try? JSONDecoder().decode(YummlyRecipes.self, from: fakeDataRecipe.correctData)
+        fakeRecipeDetails = try? JSONDecoder().decode(YummlyRecipeDetails.self, from: fakeDataRecipeDetails.correctData)
         
         guard let fakeRecipes = fakeRecipes, let fakeRecipeDetails = fakeRecipeDetails else {
             XCTFail("JSON Decode error")

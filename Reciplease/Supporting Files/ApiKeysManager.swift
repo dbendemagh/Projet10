@@ -16,11 +16,11 @@ final class ApiKeysManager {
         return NSDictionary(contentsOfFile: path) ?? [:]
     }()
     
-    var yummlyApiId: String {
-        return apiKeys["YummlyId"] as? String ?? String()
+    var yummlyId: String {
+        return apiKeys["yummlyId"] as? String ?? String()
     }
     
-    var yummlyApiKey: String {
-        return apiKeys["YummlyKey"] as? String ?? String()
+    var yummlyKey: String {
+        return apiKeys["yummlyKey"] as? String ?? String()
     }
 }

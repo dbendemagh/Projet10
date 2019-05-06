@@ -13,8 +13,10 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var favoriteRecipes: [RecipeEntity] = []
-    var ingredients: [IngredientEntity]?
-    var ingredientsDetail: [IngredientDetailEntity]?
+    //var ingredients: [IngredientEntity]?
+    //var ingredientsDetail: [IngredientDetailEntity]?
+    var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
+    //var dataImage: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +25,19 @@ class FavoritesViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let detailsVC = segue.destination as? DetailsViewController {
+            detailsVC.recipeDetails = recipeDetails
+            //detailsVC.ingredients = ingredients
+        }
+        
     }
-    */
 
     override func viewWillAppear(_ animated: Bool) {
         favoriteRecipes = RecipeEntity.fetchAll()
@@ -58,9 +64,39 @@ extension FavoritesViewController: UITableViewDataSource {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let recipeId = favoriteRecipes[indexPath.row].recipeId
-        let recipe = favoriteRecipes[indexPath.row]
-        ingredients = IngredientEntity.fetchIngredients(recipe: recipe)
-        //ingredientsDetail = IngredientDetailEntity.
-        self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
+        let recipe: RecipeEntity = favoriteRecipes[indexPath.row]
+        let ingredients = IngredientEntity.fetchIngredients(recipe: recipe)
+        let ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(recipe: recipe)
+        //name = recipe.name!
+//        id = recipe.id!
+//        rating = recipe.rating!
+        
+        //let ingredients0 = ingredients ?? []
+        //if let ingredients = ingredients {
+        //recipeDetails = YummlyRecipeDetails(images: [], name: recipe.name ?? "", source: Source(sourceRecipeUrl: ""), id: recipe.id ?? "", ingredientLines: [""], totalTimeInSeconds: recipe.time, rating: recipe.rating)
+        //}
+        //let name = recipe.name
+        let urlDirections = recipe.urlDirections ?? ""
+
+        if let name = recipe.name,
+            let id = recipe.id,
+            let time = recipe.time,
+            let rating = recipe.rating {
+            //let ingredients = ingredients, //.map({ $0.name }),
+            //let ingredientsDetail = ingredientsDetail {
+            //let image = recipe.image {
+            //let urlDirections = recipe.urlDirections {
+            recipeDetails = RecipeDetails(name: name,
+                                          id: id,
+                                          time: time,
+                                          rating: rating,
+                                          urlImage: "",
+                                          image: recipe.image,
+                                          ingredients: ingredients.map({ $0.name ?? ""}),
+                                          ingredientsDetail: ingredientsDetail.map({ $0.dosage ?? ""}),
+                                          urlDirections: urlDirections)
+            
+            self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
+        }
     }
 }
