@@ -36,6 +36,7 @@ class DetailsViewController: UIViewController {
     }
     
     func initScreen() {
+        toggleActivityIndicator(shown: false)
         
         ingredientsTitle.font = UIFont(name: Font.reciplease, size: 17)
         backgroundStackView.setBackground()

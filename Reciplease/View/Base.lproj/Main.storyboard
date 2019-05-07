@@ -47,7 +47,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-2Y-Wvk">
                                 <rect key="frame" x="205" y="191.5" width="193" height="32"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="esd-vN-UO6"/>
                                     <constraint firstAttribute="height" constant="32" id="tXI-We-thx"/>
@@ -62,7 +62,7 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1LY-TG-3n1">
                                 <rect key="frame" x="0.0" y="243.5" width="414" height="484.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="2Mx-X9-5qJ" style="IBUITableViewCellStyleDefault" id="Fb5-vg-u7S">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -80,14 +80,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="mKo-qo-brc"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="e2C-Kr-2AZ"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGL-VL-FNQ">
-                                <rect key="frame" x="16" y="748" width="382" height="50"/>
+                                <rect key="frame" x="26" y="748" width="363" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="reI-Kb-Wes"/>
@@ -111,15 +113,15 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Vb2-tq-3EE" firstAttribute="top" secondItem="vvF-xX-9vy" secondAttribute="bottom" constant="30" id="CaW-SF-BUY"/>
                             <constraint firstItem="1sy-2Y-Wvk" firstAttribute="centerY" secondItem="Vb2-tq-3EE" secondAttribute="centerY" id="DMV-BX-OaK"/>
-                            <constraint firstItem="MGL-VL-FNQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="I68-sb-TVb"/>
+                            <constraint firstItem="MGL-VL-FNQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="I68-sb-TVb"/>
                             <constraint firstItem="diP-sp-4PD" firstAttribute="centerY" secondItem="MGL-VL-FNQ" secondAttribute="centerY" id="IMT-zo-m17"/>
                             <constraint firstItem="vvF-xX-9vy" firstAttribute="top" secondItem="mFu-06-CH2" secondAttribute="bottom" constant="10" id="KM5-z3-UZe"/>
                             <constraint firstItem="1sy-2Y-Wvk" firstAttribute="leading" secondItem="Vb2-tq-3EE" secondAttribute="trailing" constant="10" id="KUA-Rp-Qj1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MGL-VL-FNQ" secondAttribute="trailing" constant="16" id="Kk1-My-0iY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MGL-VL-FNQ" secondAttribute="trailing" constant="25" id="Kk1-My-0iY"/>
                             <constraint firstItem="MGL-VL-FNQ" firstAttribute="top" secondItem="1LY-TG-3n1" secondAttribute="bottom" constant="20" id="Pmb-o3-ESu"/>
                             <constraint firstItem="1LY-TG-3n1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RSu-jy-eXb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1sy-2Y-Wvk" secondAttribute="trailing" constant="16" id="SUh-EL-121"/>
@@ -622,13 +624,14 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ExN-Tb-SbM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="Search" id="KS2-mn-8M5">
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
+                        <color key="badgeColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IBQ-Oc-0jo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -647,6 +650,6 @@
         <image name="Time" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="puY-Ag-qqR"/>
+        <segue reference="jOn-Sb-5Js"/>
     </inferredMetricsTieBreakers>
 </document>

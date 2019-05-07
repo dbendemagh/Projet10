@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let font = UIFont(name: "Chalkduster", size: 17) {
             //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: font]
             //NSAttributedString.Key.foregroundColor: UIColor.red,
-            let attrs = [
-                NSAttributedString.Key.font: font]
+            let attrs = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor : UIColor.white]
             UINavigationBar.appearance().titleTextAttributes = attrs
         }
         

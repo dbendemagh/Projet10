@@ -13,18 +13,13 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var favoriteRecipes: [RecipeEntity] = []
-    //var ingredients: [IngredientEntity]?
-    //var ingredientsDetail: [IngredientDetailEntity]?
     var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
-    //var dataImage: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
     
     // MARK: - Navigation
 

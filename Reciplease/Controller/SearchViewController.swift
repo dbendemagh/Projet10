@@ -18,8 +18,8 @@ class SearchViewController: UIViewController {
     var ingredients: [String] = []
     let defaults = UserDefaults.standard
     let yummlyService = YummlyService()
-    
     var recipes: YummlyRecipes?
+    var editionMode: Bool = false
     
     var ingredientsBackup: [String] {
         get {
@@ -61,6 +61,16 @@ class SearchViewController: UIViewController {
         activityIndicator.isHidden = !shown
     }
     
+    private func editIngredient(name: String) {
+        let ingredientsText = self.ingredientsTextField.text ?? ""
+        if editionMode == true && !name.isEmpty {
+            ingredientsTextField.text = ingredientsText + ", " + name
+        } else {
+            ingredientsTextField.text = name
+        }
+        editionMode = true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let recipesVC = segue.destination as? RecipesViewController, let recipes = recipes {
             recipesVC.recipes = recipes.matches
@@ -84,6 +94,7 @@ class SearchViewController: UIViewController {
         tableView.reloadData()
         
         ingredientsTextField.text = ""
+        editionMode = false
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
@@ -111,8 +122,38 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = ingredients[indexPath.row]
         cell.textLabel?.text = "- \(ingredient)"
+        cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17)
         
         return cell
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .normal, title: "EDIT") { (rowAction, indexPath) in
+//            let ingredientsText = self.ingredientsTextField.text ?? ""
+//            if self.editionMode == true && !ingredientsText.isEmpty {
+//                self.ingredientsTextField.text = ingredientsText + ", " + self.ingredients[indexPath.row]
+//            } else {
+//                self.ingredientsTextField.text = self.ingredients[indexPath.row]
+//            }
+            self.editIngredient(name: self.ingredients[indexPath.row])
+            self.ingredients.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        editAction.backgroundColor = UIColor.recipleaseGreen
+        
+        return [editAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.none
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 }
