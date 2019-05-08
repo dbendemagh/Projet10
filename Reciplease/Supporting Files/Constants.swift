@@ -24,7 +24,7 @@ struct URLYummly {
 struct File {
     static let recipes = "Recipes"
     static let recipeDetails = "RecipeDetails"
-    static let defaultImage = "Ingredients"
+    static let defaultImage = "Recipe-Placeholder"
 }
 
 struct Font {

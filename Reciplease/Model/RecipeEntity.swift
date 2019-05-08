@@ -16,7 +16,15 @@ class RecipeEntity: NSManagedObject {
         guard let favoriteRecipes = try? viewContext.fetch(request) else { return [] }
         return favoriteRecipes
     }
-        
+    
+    static func searchRecipes(viewContext: NSManagedObjectContext = AppDelegate.viewContext, searchText: String) -> [RecipeEntity] {
+        let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        guard let favoriteRecipes = try? viewContext.fetch(request) else { return [] }
+        return favoriteRecipes
+    }
+    
     static func isRecipeRegistered(viewContext: NSManagedObjectContext = AppDelegate.viewContext, id: String) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)

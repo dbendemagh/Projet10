@@ -18,6 +18,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var backgroundStackView: UIStackView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     
     var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
     
@@ -37,6 +38,9 @@ class DetailsViewController: UIViewController {
     
     func initScreen() {
         toggleActivityIndicator(shown: false)
+        
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension
         
         ingredientsTitle.font = UIFont(name: Font.reciplease, size: 17)
         backgroundStackView.setBackground()
@@ -141,6 +145,7 @@ extension DetailsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+        cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "- \(recipeDetails.ingredientsDetail[indexPath.row])"
         cell.textLabel?.font = UIFont(name: Font.reciplease, size: 13)
         

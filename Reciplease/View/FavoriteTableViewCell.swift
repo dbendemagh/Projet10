@@ -61,3 +61,5 @@ class FavoriteTableViewCell: UITableViewCell {
         recipeImage.addSubview(gradientView)
     }
 }
+
+

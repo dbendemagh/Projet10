@@ -42,7 +42,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vb2-tq-3EE">
                                 <rect key="frame" x="16" y="196.5" width="179" height="22"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-2Y-Wvk">
@@ -105,7 +105,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFu-06-CH2">
                                 <rect key="frame" x="16" y="103" width="382" height="23.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="diP-sp-4PD">
@@ -141,7 +141,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="uLc-zH-29f">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="6IZ-PJ-0Jp"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="6IZ-PJ-0Jp">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="diP-sp-4PD" id="Xnn-tt-9ik"/>
@@ -159,7 +161,7 @@
         <scene sceneID="yOb-ne-Sll">
             <objects>
                 <navigationController id="wWS-Jw-VX7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" id="cbO-8h-tiQ"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="Favorite" id="cbO-8h-tiQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q5p-dA-gDa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -181,7 +183,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-W4-9FF">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteRecipeCell" rowHeight="150" id="IpG-yH-GRw" customClass="FavoriteTableViewCell" customModule="Reciplease" customModuleProvider="target">
@@ -281,12 +283,22 @@
                                     <outlet property="delegate" destination="ut5-E9-S2V" id="hYw-dJ-kwX"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ZdP-QZ-6cR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ut5-E9-S2V" id="b8l-3s-NeS"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Gfj-W4-9FF" firstAttribute="top" secondItem="JFm-Zq-rvG" secondAttribute="top" id="Qxn-eT-K2x"/>
+                            <constraint firstItem="ZdP-QZ-6cR" firstAttribute="trailing" secondItem="JFm-Zq-rvG" secondAttribute="trailing" id="3tB-fw-X8Z"/>
                             <constraint firstItem="Gfj-W4-9FF" firstAttribute="bottom" secondItem="JFm-Zq-rvG" secondAttribute="bottom" id="WpU-iZ-sow"/>
                             <constraint firstItem="Gfj-W4-9FF" firstAttribute="trailing" secondItem="JFm-Zq-rvG" secondAttribute="trailing" id="aXk-La-1ah"/>
+                            <constraint firstItem="ZdP-QZ-6cR" firstAttribute="leading" secondItem="JFm-Zq-rvG" secondAttribute="leading" id="deb-Yk-ibu"/>
+                            <constraint firstItem="ZdP-QZ-6cR" firstAttribute="top" secondItem="JFm-Zq-rvG" secondAttribute="top" id="gbc-Ef-rBA"/>
+                            <constraint firstItem="Gfj-W4-9FF" firstAttribute="top" secondItem="ZdP-QZ-6cR" secondAttribute="bottom" id="ijg-1B-4QF"/>
                             <constraint firstItem="Gfj-W4-9FF" firstAttribute="leading" secondItem="JFm-Zq-rvG" secondAttribute="leading" id="re9-FO-RlC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JFm-Zq-rvG"/>
@@ -593,6 +605,7 @@
                         <outlet property="recipeName" destination="3U2-Gz-b8I" id="nRG-BD-aJj"/>
                         <outlet property="recipeRating" destination="pjm-zc-BvL" id="A5X-cC-12W"/>
                         <outlet property="recipeTime" destination="JJl-3k-bkw" id="f7J-z9-IT3"/>
+                        <outlet property="tableView" destination="B59-73-bbT" id="hn7-kA-uYE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oC-4V-nEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -607,7 +620,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yuy-Fo-YCg">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="ExN-Tb-SbM" kind="relationship" relationship="viewControllers" id="95a-YV-9Hj"/>
@@ -624,7 +640,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ExN-Tb-SbM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="Search" id="KS2-mn-8M5">
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
-                        <color key="badgeColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IBQ-Oc-0jo">

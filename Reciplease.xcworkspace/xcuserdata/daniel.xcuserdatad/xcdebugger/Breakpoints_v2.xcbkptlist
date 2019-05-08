@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reciplease/Model/RecipeEntity.swift"
-            timestampString = "578920550.300323"
+            timestampString = "579003116.36944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "add(viewContext:recipeDetails:)"
             landmarkType = "7">
          </BreakpointContent>

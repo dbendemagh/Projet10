@@ -40,7 +40,7 @@ class RecipeTableViewCell: UITableViewCell {
         var urlString = recipe.smallImageUrls[0]
         urlString = urlString.dropLast(2) + "360"
         let url = URL(string: urlString)
-        recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Ingredients"), options: .continueInBackground, completed: nil)
+        recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Recipe-Placeholder"), options: .continueInBackground, completed: nil)
         backgroundStackView.setBackground()
     }
     

@@ -17,8 +17,6 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - Navigation
@@ -40,6 +38,7 @@ class FavoritesViewController: UIViewController {
     }
 }
 
+// MARK: TableView DataSource
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteRecipes.count
@@ -56,6 +55,7 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 }
 
+// MARK: TableView Delegate
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let recipeId = favoriteRecipes[indexPath.row].recipeId
@@ -92,6 +92,26 @@ extension FavoritesViewController: UITableViewDelegate {
                                           urlDirections: urlDirections)
             
             self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
+        }
+    }
+}
+
+// MARK: - SearchBar Delegate
+extension FavoritesViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            favoriteRecipes = RecipeEntity.searchRecipes(searchText: searchText)
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            favoriteRecipes = RecipeEntity.fetchAll()
+            tableView.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
 }
