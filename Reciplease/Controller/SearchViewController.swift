@@ -36,6 +36,7 @@ class SearchViewController: UIViewController {
         toggleActivityIndicator(shown: false)
         
         ingredients = ingredientsBackup
+        
     }
     
     
@@ -63,7 +64,7 @@ class SearchViewController: UIViewController {
     
     private func editIngredient(name: String) {
         let ingredientsText = self.ingredientsTextField.text ?? ""
-        if editionMode == true && !name.isEmpty {
+        if editionMode == true && !ingredientsText.isEmpty {
             ingredientsTextField.text = ingredientsText + ", " + name
         } else {
             ingredientsTextField.text = name
@@ -144,7 +145,7 @@ extension SearchViewController: UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-        editAction.backgroundColor = UIColor.recipleaseGreen
+        editAction.backgroundColor = UIColor.Reciplease.green
         
         return [editAction]
     }

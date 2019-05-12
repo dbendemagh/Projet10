@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 class IngredientEntity: NSManagedObject {
+    // MARK: - CRUD
     static func fetchIngredients(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity) -> [IngredientEntity] {
         let request: NSFetchRequest<IngredientEntity> = IngredientEntity.fetchRequest()
         request.predicate = NSPredicate(format: "recipe == %@", recipe)
@@ -31,7 +32,6 @@ class IngredientEntity: NSManagedObject {
     static func deleteAll(viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "IngredientEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        
         let _ = try? viewContext.execute(deleteRequest)
         try? viewContext.save()
     }

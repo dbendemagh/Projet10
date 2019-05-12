@@ -3,6 +3,7 @@
     <entity name="IngredientDetailEntity" representedClassName=".IngredientDetailEntity" syncable="YES" codeGenerationType="category">
         <attribute name="displayOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purchased" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredientsDetail" inverseEntity="RecipeEntity" syncable="YES"/>
     </entity>
     <entity name="IngredientEntity" representedClassName=".IngredientEntity" syncable="YES" codeGenerationType="category">
@@ -15,6 +16,7 @@
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shoppingList" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlDirections" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recipe" inverseEntity="IngredientEntity" syncable="YES"/>
@@ -22,7 +24,7 @@
     </entity>
     <elements>
         <element name="IngredientEntity" positionX="-157.9453125" positionY="-89.82421875" width="128" height="88"/>
-        <element name="RecipeEntity" positionX="-464" positionY="-28" width="128" height="163"/>
-        <element name="IngredientDetailEntity" positionX="-161.0390625" positionY="71.69140625" width="180.9921875" height="88"/>
+        <element name="RecipeEntity" positionX="-464" positionY="-28" width="128" height="178"/>
+        <element name="IngredientDetailEntity" positionX="-161.0390625" positionY="71.69140625" width="180.9921875" height="103"/>
     </elements>
 </model>

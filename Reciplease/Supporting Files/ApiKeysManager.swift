@@ -13,6 +13,7 @@ final class ApiKeysManager {
         guard let path = Bundle.main.path(forResource: "ApiKeys", ofType: "plist") else {
             fatalError("ApiKeys.plist not found")
         }
+        
         return NSDictionary(contentsOfFile: path) ?? [:]
     }()
     

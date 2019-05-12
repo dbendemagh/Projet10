@@ -17,6 +17,7 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     // MARK: - Navigation
@@ -62,25 +63,13 @@ extension FavoritesViewController: UITableViewDelegate {
         let recipe: RecipeEntity = favoriteRecipes[indexPath.row]
         let ingredients = IngredientEntity.fetchIngredients(recipe: recipe)
         let ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(recipe: recipe)
-        //name = recipe.name!
-//        id = recipe.id!
-//        rating = recipe.rating!
-        
-        //let ingredients0 = ingredients ?? []
-        //if let ingredients = ingredients {
-        //recipeDetails = YummlyRecipeDetails(images: [], name: recipe.name ?? "", source: Source(sourceRecipeUrl: ""), id: recipe.id ?? "", ingredientLines: [""], totalTimeInSeconds: recipe.time, rating: recipe.rating)
-        //}
-        //let name = recipe.name
         let urlDirections = recipe.urlDirections ?? ""
 
         if let name = recipe.name,
             let id = recipe.id,
             let time = recipe.time,
             let rating = recipe.rating {
-            //let ingredients = ingredients, //.map({ $0.name }),
-            //let ingredientsDetail = ingredientsDetail {
-            //let image = recipe.image {
-            //let urlDirections = recipe.urlDirections {
+            
             recipeDetails = RecipeDetails(name: name,
                                           id: id,
                                           time: time,

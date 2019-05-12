@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import SafariServices
 
 class DetailsViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var recipeRating: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
     @IBOutlet weak var backgroundStackView: UIStackView!
+    @IBOutlet weak var shoppingListButton: UIBarButtonItem!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -34,6 +36,8 @@ class DetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setFavoriteButton()
+        setShoppingListButton()
+        setTabBar()
     }
     
     func initScreen() {
@@ -89,10 +93,30 @@ class DetailsViewController: UIViewController {
     private func setFavoriteButton() {
         if RecipeEntity.isRecipeRegistered(id: recipeDetails.id) {
             isFavorite = true
-           favoriteButton.tintColor = .recipleaseGreen
+           favoriteButton.tintColor = UIColor.Reciplease.green
         } else {
             isFavorite = false
             favoriteButton.tintColor = .white
+        }
+    }
+    
+    private func setShoppingListButton() {
+        if RecipeEntity.isInShoppingList(id: recipeDetails.id) {
+            shoppingListButton.tintColor = UIColor.Reciplease.green
+        } else {
+            shoppingListButton.tintColor = .white
+        }
+    }
+    
+    private func setTabBar() {
+        let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
+        
+        if let tabBarItems = tabBarController?.tabBar.items {
+            if ingredients.count > 0 {
+                tabBarItems[2].badgeValue = String(ingredients.count)
+            } else {
+                tabBarItems[2].badgeValue = nil
+            }
         }
     }
     
@@ -122,6 +146,14 @@ class DetailsViewController: UIViewController {
     }
     */
 
+    // MARK: Action buttons
+    
+    @IBAction func shoppingListButtonPressed(_ sender: Any) {
+        RecipeEntity.toggleShoppingList(id: recipeDetails.id)
+        setShoppingListButton()
+        setTabBar()
+    }
+    
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         if isFavorite {
             RecipeEntity.delete(id: recipeDetails.id)
@@ -135,9 +167,12 @@ class DetailsViewController: UIViewController {
         //guard !recipeDetails.urlDirections.isEmpty else { return }
         guard let url = URL(string: recipeDetails.urlDirections) else { return }
         UIApplication.shared.open(url, options: [:])
+        //let safariVC = SFSafariViewController(url: url)
+        //present(safariVC, animated: true)
     }
 }
 
+// MARK: - TableView Datasource
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeDetails.ingredientsDetail.count // ingredientLines.count
@@ -147,7 +182,7 @@ extension DetailsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "- \(recipeDetails.ingredientsDetail[indexPath.row])"
-        cell.textLabel?.font = UIFont(name: Font.reciplease, size: 13)
+        cell.textLabel?.font = UIFont(name: Font.reciplease, size: 14)
         
         return cell
     }
