@@ -37,12 +37,25 @@ class SearchViewController: UIViewController {
         
         ingredients = ingredientsBackup
         
+        setShoppinListTab()
     }
     
     
     // MARK: - Methods
     
-    func searchRecipes() {
+    private func setShoppinListTab() {
+        let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
+        
+        if let tabBarItems = tabBarController?.tabBar.items {
+            if ingredients.count > 0 {
+                tabBarItems[2].badgeValue = String(ingredients.count)
+            } else {
+                tabBarItems[2].badgeValue = nil
+            }
+        }
+    }
+
+    private func searchRecipes() {
         toggleActivityIndicator(shown: true)
         yummlyService.searchRecipes(ingredients: ingredients) { (result) in
             self.toggleActivityIndicator(shown: false)
@@ -156,5 +169,9 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

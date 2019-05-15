@@ -24,6 +24,7 @@ class IngredientDetailEntity: NSManagedObject {
         for index in 0...ingredientsDetail.count - 1 {
             let ingredientDetail = IngredientDetailEntity(context: viewContext)
             ingredientDetail.dosage = ingredientsDetail[index]
+            ingredientDetail.purchased = false
             ingredientDetail.displayOrder = Int32(index)
             ingredientDetail.recipe = recipe
         }
@@ -42,7 +43,7 @@ class IngredientDetailEntity: NSManagedObject {
         let recipes = RecipeEntity.fetchRecipesInShoppingList(viewContext: viewContext)
         
         let request: NSFetchRequest<IngredientDetailEntity> = IngredientDetailEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "recipe IN %@", recipes)
+        request.predicate = NSPredicate(format: "recipe IN %@ AND purchased == false", recipes) //
         request.sortDescriptors = [NSSortDescriptor(key: "displayOrder", ascending: true)]
         guard let ingredientsDetail = try? viewContext.fetch(request) else { return [] }
         return ingredientsDetail
@@ -54,5 +55,10 @@ class IngredientDetailEntity: NSManagedObject {
         //
         //        }
         
+    }
+    
+    static func setPurchased(viewContext: NSManagedObjectContext = AppDelegate.viewContext, ingredient: IngredientDetailEntity, isPurchased: Bool) {
+        ingredient.purchased = isPurchased
+        try? viewContext.save()
     }
 }

@@ -37,7 +37,7 @@ class DetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setFavoriteButton()
         setShoppingListButton()
-        setTabBar()
+        setShoppinListTab()
     }
     
     func initScreen() {
@@ -108,7 +108,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    private func setTabBar() {
+    private func setShoppinListTab() {
         let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
         
         if let tabBarItems = tabBarController?.tabBar.items {
@@ -151,7 +151,7 @@ class DetailsViewController: UIViewController {
     @IBAction func shoppingListButtonPressed(_ sender: Any) {
         RecipeEntity.toggleShoppingList(id: recipeDetails.id)
         setShoppingListButton()
-        setTabBar()
+        setShoppinListTab()
     }
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
