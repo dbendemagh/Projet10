@@ -22,13 +22,14 @@ class RecipeEntity: NSManagedObject {
         let recipe = RecipeEntity(context: viewContext)
         recipe.name = recipeDetails.name
         recipe.id = recipeDetails.id
-        recipe.rating = recipeDetails.rating //.likestoString()
-        recipe.time = recipeDetails.time // totalTimeInSeconds.secondsToString()
+        recipe.rating = recipeDetails.rating
+        recipe.time = recipeDetails.time
         recipe.urlDirections = recipeDetails.urlDirections
+        recipe.shoppingList = recipeDetails.shoppingList
         if let image = recipeDetails.image {
             recipe.image = image
         }
-        //print(ingredients)
+        
         IngredientEntity.add(viewContext: viewContext, recipe: recipe, ingredients: recipeDetails.ingredients)
         IngredientDetailEntity.add(viewContext: viewContext, recipe: recipe, ingredientsDetail: recipeDetails.ingredientsDetail)
         try? viewContext.save()
@@ -88,8 +89,8 @@ class RecipeEntity: NSManagedObject {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         if let recipe = try? viewContext.fetch(request).first {
-            let shoppingList = recipe.shoppingList
-            recipe.shoppingList = !shoppingList
+            //let shoppingList = recipe.shoppingList
+            recipe.shoppingList.toggle() //= !shoppingList
             try? viewContext.save()
         }
     }

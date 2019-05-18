@@ -13,7 +13,16 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var favoriteRecipes: [RecipeEntity] = []
-    var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
+    var recipeDetails = RecipeDetails(name: "",
+                                      id: "",
+                                      time: "",
+                                      rating: "",
+                                      urlImage: "",
+                                      image: nil,
+                                      ingredients: [],
+                                      ingredientsDetail: [],
+                                      urlDirections: "",
+                                      shoppingList: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +87,8 @@ extension FavoritesViewController: UITableViewDelegate {
                                           image: recipe.image,
                                           ingredients: ingredients.map({ $0.name ?? ""}),
                                           ingredientsDetail: ingredientsDetail.map({ $0.dosage ?? ""}),
-                                          urlDirections: urlDirections)
+                                          urlDirections: urlDirections,
+                                          shoppingList: false)
             
             self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
         }

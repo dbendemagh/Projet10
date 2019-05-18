@@ -13,7 +13,16 @@ class RecipesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var recipes: [Recipe] = []
-    var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
+    var recipeDetails = RecipeDetails(name: "",
+                                      id: "",
+                                      time: "",
+                                      rating: "",
+                                      urlImage: "",
+                                      image: nil,
+                                      ingredients: [],
+                                      ingredientsDetail: [],
+                                      urlDirections: "",
+                                      shoppingList: false)
     
     //var recipeDetails: RecipeDetails?
     //var ingredients: [String] = []
@@ -70,8 +79,8 @@ extension RecipesViewController: UITableViewDelegate {
                                                     image: nil,
                                                     ingredients: recipe.ingredients,
                                                     ingredientsDetail: recipeDetails.ingredientLines,
-                                                    urlDirections: recipeDetails.source.sourceRecipeUrl
-                                                    )
+                                                    urlDirections: recipeDetails.source.sourceRecipeUrl,
+                                                    shoppingList: false)
                 self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
             case .failure(_):
                 self.displayAlert(title: "Network error", message: "Cannot retrieve recipe details")

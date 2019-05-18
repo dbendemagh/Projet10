@@ -29,10 +29,8 @@ class YummlyServiceTests: XCTestCase {
                 XCTFail()
                 return
             }
-            
             expectation.fulfill()
         }
-
         wait(for: [expectation], timeout: 0.01)
     }
     
@@ -50,7 +48,6 @@ class YummlyServiceTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
         wait(for: [expectation], timeout: 0.01)
     }
     
@@ -69,7 +66,6 @@ class YummlyServiceTests: XCTestCase {
             }
             expectation.fulfill()
         }
-
         wait(for: [expectation], timeout: 0.01)
     }
 

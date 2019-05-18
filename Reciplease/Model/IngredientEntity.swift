@@ -20,7 +20,6 @@ class IngredientEntity: NSManagedObject {
     }
     
     static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity, ingredients: [String]) {
-        //for currentIngredient in ingredients {
         for index in 0...ingredients.count - 1 {
             let ingredient = IngredientEntity(context: viewContext)
             ingredient.name = ingredients[index]

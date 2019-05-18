@@ -10,11 +10,18 @@ import Foundation
 
 // Load json file (or image)
 class FakeData {
-    let correctData: Data
+    let correctData: Data?
     
     init(file: String, fileExt: String) {
         let bundle = Bundle(for: FakeData.self)
-        let url = bundle.url(forResource: file, withExtension: fileExt)
-        correctData = try! Data(contentsOf: url!)
+        guard let url = bundle.url(forResource: file, withExtension: fileExt) else {
+            fatalError("\(file).\(fileExt) not found")
+        }
+        
+        do {
+            correctData = try Data(contentsOf: url)
+        } catch {
+            fatalError("\(file).\(fileExt) could not be loaded")
+        }
     }
 }

@@ -22,7 +22,16 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    var recipeDetails = RecipeDetails(name: "", id: "", time: "", rating: "", urlImage: "", image: nil, ingredients: [], ingredientsDetail: [], urlDirections: "")
+    var recipeDetails = RecipeDetails(name: "",
+                                      id: "",
+                                      time: "",
+                                      rating: "",
+                                      urlImage: "",
+                                      image: nil,
+                                      ingredients: [],
+                                      ingredientsDetail: [],
+                                      urlDirections: "",
+                                      shoppingList: false)
     
     var isFavorite: Bool = false
     

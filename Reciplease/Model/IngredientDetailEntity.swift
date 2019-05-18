@@ -20,7 +20,6 @@ class IngredientDetailEntity: NSManagedObject {
     }
     
     static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity, ingredientsDetail: [String]) {
-        //for currentIngredientDetail in ingredientsDetail {
         for index in 0...ingredientsDetail.count - 1 {
             let ingredientDetail = IngredientDetailEntity(context: viewContext)
             ingredientDetail.dosage = ingredientsDetail[index]
@@ -39,7 +38,7 @@ class IngredientDetailEntity: NSManagedObject {
     }
     
     // MARK: - Shopping List
-    static func fetchIngredientsInShoppingList(viewContext: NSManagedObjectContext = AppDelegate.viewContext)-> [IngredientDetailEntity] {
+    static func fetchIngredientsInShoppingList(viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [IngredientDetailEntity] {
         let recipes = RecipeEntity.fetchRecipesInShoppingList(viewContext: viewContext)
         
         let request: NSFetchRequest<IngredientDetailEntity> = IngredientDetailEntity.fetchRequest()
@@ -47,14 +46,6 @@ class IngredientDetailEntity: NSManagedObject {
         request.sortDescriptors = [NSSortDescriptor(key: "displayOrder", ascending: true)]
         guard let ingredientsDetail = try? viewContext.fetch(request) else { return [] }
         return ingredientsDetail
-        //        for recipe in recipes {
-        //            let request: NSFetchRequest<IngredientDetailEntity> = IngredientDetailEntity.fetchRequest()
-        //            request.predicate = NSPredicate(format: "recipe == %@", recipe)
-        //            request.sortDescriptors = [NSSortDescriptor(key: "displayOrder", ascending: true)]
-        //            let ingredientsDetail = try? viewContext.fetch(request)
-        //
-        //        }
-        
     }
     
     static func setPurchased(viewContext: NSManagedObjectContext = AppDelegate.viewContext, ingredient: IngredientDetailEntity, isPurchased: Bool) {
