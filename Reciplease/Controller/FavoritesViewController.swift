@@ -13,6 +13,7 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var favoriteRecipes: [RecipeEntity] = []
+    var filteredFavoriteRecipes: [RecipeEntity] = []
     var recipeDetails = RecipeDetails(name: "",
                                       id: "",
                                       time: "",
@@ -24,9 +25,20 @@ class FavoritesViewController: UIViewController {
                                       urlDirections: "",
                                       shoppingList: false)
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavBar()
+    }
+    
+    func setupNavBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search recipes"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        definesPresentationContext = true
     }
     
     // MARK: - Navigation
@@ -46,11 +58,25 @@ class FavoritesViewController: UIViewController {
         favoriteRecipes = RecipeEntity.fetchAll()
         tableView.reloadData()
     }
+    
+    // MARK: - Search Bar methods
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
 }
 
 // MARK: TableView DataSource
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredFavoriteRecipes.count
+        }
+        
         return favoriteRecipes.count
     }
     
@@ -59,7 +85,11 @@ extension FavoritesViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(recipe: favoriteRecipes[indexPath.row])
+        if isFiltering() {
+            cell.configure(recipe: filteredFavoriteRecipes[indexPath.row])
+        } else {
+            cell.configure(recipe: favoriteRecipes[indexPath.row])
+        }
         
         return cell
     }
@@ -68,8 +98,9 @@ extension FavoritesViewController: UITableViewDataSource {
 // MARK: TableView Delegate
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let recipeId = favoriteRecipes[indexPath.row].recipeId
-        let recipe: RecipeEntity = favoriteRecipes[indexPath.row]
+        let recipe: RecipeEntity = isFiltering() ?
+            filteredFavoriteRecipes[indexPath.row] : favoriteRecipes[indexPath.row]
+        
         let ingredients = IngredientEntity.fetchIngredients(recipe: recipe)
         let ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(recipe: recipe)
         let urlDirections = recipe.urlDirections ?? ""
@@ -95,22 +126,16 @@ extension FavoritesViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - SearchBar Delegate
-extension FavoritesViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text {
-            favoriteRecipes = RecipeEntity.searchRecipes(searchText: searchText)
+extension FavoritesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            
+            filteredFavoriteRecipes = favoriteRecipes.filter({ (recipeEntity) -> Bool in
+                guard let name = recipeEntity.name else { return false }
+                return name.lowercased().contains(searchText.lowercased())
+            })
+            
             tableView.reloadData()
-        }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            favoriteRecipes = RecipeEntity.fetchAll()
-            tableView.reloadData()
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
         }
     }
 }

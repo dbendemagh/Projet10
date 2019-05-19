@@ -182,15 +182,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ZdP-QZ-6cR">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="ut5-E9-S2V" id="b8l-3s-NeS"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-W4-9FF">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteRecipeCell" rowHeight="150" id="IpG-yH-GRw" customClass="FavoriteTableViewCell" customModule="Reciplease" customModuleProvider="target">
@@ -293,12 +286,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZdP-QZ-6cR" firstAttribute="trailing" secondItem="JFm-Zq-rvG" secondAttribute="trailing" id="3tB-fw-X8Z"/>
                             <constraint firstItem="Gfj-W4-9FF" firstAttribute="bottom" secondItem="JFm-Zq-rvG" secondAttribute="bottom" id="WpU-iZ-sow"/>
                             <constraint firstItem="Gfj-W4-9FF" firstAttribute="trailing" secondItem="JFm-Zq-rvG" secondAttribute="trailing" id="aXk-La-1ah"/>
-                            <constraint firstItem="ZdP-QZ-6cR" firstAttribute="leading" secondItem="JFm-Zq-rvG" secondAttribute="leading" id="deb-Yk-ibu"/>
-                            <constraint firstItem="ZdP-QZ-6cR" firstAttribute="top" secondItem="JFm-Zq-rvG" secondAttribute="top" id="gbc-Ef-rBA"/>
-                            <constraint firstItem="Gfj-W4-9FF" firstAttribute="top" secondItem="ZdP-QZ-6cR" secondAttribute="bottom" id="ijg-1B-4QF"/>
+                            <constraint firstItem="Gfj-W4-9FF" firstAttribute="top" secondItem="JFm-Zq-rvG" secondAttribute="top" id="qqO-v9-cVn"/>
                             <constraint firstItem="Gfj-W4-9FF" firstAttribute="leading" secondItem="JFm-Zq-rvG" secondAttribute="leading" id="re9-FO-RlC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JFm-Zq-rvG"/>

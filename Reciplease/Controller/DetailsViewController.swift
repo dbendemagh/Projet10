@@ -61,11 +61,13 @@ class DetailsViewController: UIViewController {
         recipeName.text = recipeDetails.name
         recipeRating.text = recipeDetails.rating
         recipeTime.text = recipeDetails.time    // totalTimeInSeconds.secondsToString()
-            
+        
         setImage() //urlImage: recipeDetails.urlDirections) // recipeDetails.images[0].hostedLargeUrl)
         
         recipeImage.setGradient()
     }
+    
+    
     
     private func setImage() {//urlImage: String) {
         if let image = recipeDetails.image {
