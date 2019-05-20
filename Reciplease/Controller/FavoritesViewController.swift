@@ -36,6 +36,8 @@ class FavoritesViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search recipes"
+        searchController.searchBar.tintColor = .white
+        //searchController.searchBar.color = .white
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         definesPresentationContext = true

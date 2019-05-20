@@ -12,8 +12,10 @@ extension UIStackView {
     func setBackground() {
         let backgroundView = UIView(frame: frame)
         backgroundView.backgroundColor = UIColor.darkGray
-        backgroundView.alpha = 0.3
+        backgroundView.alpha = 0.4
         backgroundView.layer.cornerRadius = 5.0
+        backgroundView.layer.borderColor = UIColor.white.cgColor
+        backgroundView.layer.borderWidth = 3
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         self.insertSubview(backgroundView, at: 0)
         NSLayoutConstraint.activate([

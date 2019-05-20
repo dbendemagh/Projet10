@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-
+    // a retirer
     func setGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
@@ -19,4 +19,5 @@ extension UIView {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         layer.addSublayer(gradientLayer)
         //alpha = 0.5
-    }}
+    }
+}
