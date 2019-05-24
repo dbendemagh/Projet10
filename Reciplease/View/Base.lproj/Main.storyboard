@@ -24,7 +24,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uha-my-67H">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uha-my-67H" customClass="RoundButton" customModule="Reciplease" customModuleProvider="target">
                                 <rect key="frame" x="318" y="135.5" width="80" height="32"/>
                                 <color key="backgroundColor" red="0.26666666666666666" green="0.58029425144195557" blue="0.36524426937103271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -45,11 +45,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-2Y-Wvk">
-                                <rect key="frame" x="205" y="191.5" width="193" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-2Y-Wvk" customClass="RoundButton" customModule="Reciplease" customModuleProvider="target">
+                                <rect key="frame" x="318" y="191.5" width="80" height="32"/>
                                 <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="esd-vN-UO6"/>
+                                    <constraint firstAttribute="width" constant="80" id="esd-vN-UO6"/>
                                     <constraint firstAttribute="height" constant="32" id="tXI-We-thx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -88,7 +88,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="e2C-Kr-2AZ"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGL-VL-FNQ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGL-VL-FNQ" customClass="RoundButton" customModule="Reciplease" customModuleProvider="target">
                                 <rect key="frame" x="26" y="748" width="363" height="50"/>
                                 <color key="backgroundColor" red="0.2666666667" green="0.58029425140000002" blue="0.36524426939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -120,7 +120,6 @@
                             <constraint firstItem="MGL-VL-FNQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="I68-sb-TVb"/>
                             <constraint firstItem="diP-sp-4PD" firstAttribute="centerY" secondItem="MGL-VL-FNQ" secondAttribute="centerY" id="IMT-zo-m17"/>
                             <constraint firstItem="vvF-xX-9vy" firstAttribute="top" secondItem="mFu-06-CH2" secondAttribute="bottom" constant="10" id="KM5-z3-UZe"/>
-                            <constraint firstItem="1sy-2Y-Wvk" firstAttribute="leading" secondItem="Vb2-tq-3EE" secondAttribute="trailing" constant="10" id="KUA-Rp-Qj1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MGL-VL-FNQ" secondAttribute="trailing" constant="25" id="Kk1-My-0iY"/>
                             <constraint firstItem="MGL-VL-FNQ" firstAttribute="top" secondItem="1LY-TG-3n1" secondAttribute="bottom" constant="20" id="Pmb-o3-ESu"/>
                             <constraint firstItem="1LY-TG-3n1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RSu-jy-eXb"/>
@@ -244,7 +243,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pF6-SC-NJx">
-                                                    <rect key="frame" x="15" y="81.5" width="384" height="53"/>
+                                                    <rect key="frame" x="15" y="82" width="384" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trJ-f8-ghT">
                                                             <rect key="frame" x="0.0" y="0.0" width="384" height="27.5"/>
@@ -576,12 +575,12 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgX-Cd-Ns7">
-                                <rect key="frame" x="15" y="283" width="399" height="29.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="15" y="283" width="399" height="35"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzH-sq-cLx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzH-sq-cLx" customClass="RoundButton" customModule="Reciplease" customModuleProvider="target">
                                 <rect key="frame" x="16" y="704" width="382" height="50"/>
                                 <color key="backgroundColor" red="0.26584151387214661" green="0.58029425144195557" blue="0.36524426937103271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -605,8 +604,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B59-73-bbT">
-                                <rect key="frame" x="0.0" y="317.5" width="414" height="376.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="323" width="414" height="371"/>
+                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" id="6ki-qX-e0k">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -615,10 +614,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Sai-Zy-YO9" id="83w-bM-Mnf"/>
+                                    <outlet property="delegate" destination="Sai-Zy-YO9" id="QJK-7z-1ym"/>
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DmX-aO-OE7">
@@ -626,7 +627,7 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="OzH-sq-cLx" secondAttribute="trailing" constant="16" id="2UY-J2-sDU"/>
                             <constraint firstItem="pi4-C7-Lb2" firstAttribute="trailing" secondItem="3U2-Gz-b8I" secondAttribute="trailing" id="41L-AJ-vho"/>

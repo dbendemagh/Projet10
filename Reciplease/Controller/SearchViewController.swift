@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
     let defaults = UserDefaults.standard
     let yummlyService = YummlyService()
     var recipes: YummlyRecipes?
-    var editionMode: Bool = false
+    var isEditingIngredients: Bool = false
     
     var ingredientsBackup: [String] {
         get {
@@ -33,15 +33,18 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barStyle = .black
         toggleActivityIndicator(shown: false)
         
         ingredients = ingredientsBackup
         
         setShoppinListTab()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,11 +57,7 @@ class SearchViewController: UIViewController {
         let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
         
         if let tabBarItems = tabBarController?.tabBar.items {
-            if ingredients.count > 0 {
-                tabBarItems[2].badgeValue = String(ingredients.count)
-            } else {
-                tabBarItems[2].badgeValue = nil
-            }
+            tabBarItems[2].badgeValue =  ingredients.count > 0 ? String(ingredients.count) : nil
         }
     }
 
@@ -84,12 +83,12 @@ class SearchViewController: UIViewController {
     
     private func editIngredient(name: String) {
         let ingredientsText = self.ingredientsTextField.text ?? ""
-        if editionMode == true && !ingredientsText.isEmpty {
+        if isEditingIngredients && !ingredientsText.isEmpty {
             ingredientsTextField.text = ingredientsText + ", " + name
         } else {
             ingredientsTextField.text = name
         }
-        editionMode = true
+        isEditingIngredients = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,7 +98,6 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
     @IBAction func addButtonPressed(_ sender: Any) {
         guard let ingredientsText = ingredientsTextField.text else { return }
         
@@ -115,7 +113,7 @@ class SearchViewController: UIViewController {
         tableView.reloadData()
         
         ingredientsTextField.text = ""
-        editionMode = false
+        isEditingIngredients = false
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
@@ -134,6 +132,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+// MARK: - TableView DataSource
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
@@ -141,25 +140,17 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+        cell.setDisplay()
         let ingredient = ingredients[indexPath.row]
         cell.textLabel?.text = "- \(ingredient)"
-        cell.textLabel?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17)
-        
         return cell
     }
 }
 
+// MARK: - TableView Delegate
 extension SearchViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: .normal, title: "EDIT") { (rowAction, indexPath) in
-//            let ingredientsText = self.ingredientsTextField.text ?? ""
-//            if self.editionMode == true && !ingredientsText.isEmpty {
-//                self.ingredientsTextField.text = ingredientsText + ", " + self.ingredients[indexPath.row]
-//            } else {
-//                self.ingredientsTextField.text = self.ingredients[indexPath.row]
-//            }
             self.editIngredient(name: self.ingredients[indexPath.row])
             self.ingredients.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

@@ -19,9 +19,7 @@ class ShoppingListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        
+        navigationController?.navigationBar.barStyle = .black
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,18 +28,8 @@ class ShoppingListViewController: UIViewController {
         setShoppingListTab()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     private func initShoppingList() {
         shoppingList.removeAll()
-        
         recipes = RecipeEntity.fetchRecipesInShoppingList()
         
         for recipe in recipes {
@@ -53,12 +41,9 @@ class ShoppingListViewController: UIViewController {
     private func setShoppingListTab() {
         let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
         
+        // Number of ingredients to buy
         if let tabBarItems = tabBarController?.tabBar.items {
-            if ingredients.count > 0 {
-                tabBarItems[2].badgeValue = String(ingredients.count)
-            } else {
-                tabBarItems[2].badgeValue = nil
-            }
+            tabBarItems[2].badgeValue = ingredients.count > 0 ? String(ingredients.count) : nil
         }
     }
 }
@@ -73,29 +58,21 @@ extension ShoppingListViewController: UITableViewDataSource {
         return shoppingList[section].count
     }
     
-    //func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //let label  = UILabel()
-        //label.text = "recipes"
-        //return recipes[section].name
-    //}
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingListCell", for: indexPath)
+        cell.setDisplay()
         
-        let recipe = shoppingList[indexPath.section] //[indexPath.row] {
+        let recipe = shoppingList[indexPath.section]
         let ingredient = recipe[indexPath.row]
         
-        cell.textLabel?.numberOfLines = 0
-        //cell.textLabel?.text = "\(shoppingList[indexPath.section][indexPath.row].dosage ?? "")"
+        //cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(ingredient.dosage ?? "")"
-        cell.textLabel?.font = UIFont(name: Font.reciplease, size: 14)
-        cell.textLabel?.textColor = .white
-        
-        if ingredient.purchased {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
+//        cell.textLabel?.font = UIFont(name: Font.reciplease, size: 14)
+//        cell.textLabel?.textColor = .white
+//        let backgroundView = UIView()
+//        backgroundView.backgroundColor = UIColor.darkGray
+//        cell.selectedBackgroundView = backgroundView
+        cell.accessoryType = ingredient.purchased ? .checkmark : .none
         
         return cell
     }

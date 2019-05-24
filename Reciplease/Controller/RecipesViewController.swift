@@ -24,25 +24,18 @@ class RecipesViewController: UIViewController {
                                       urlDirections: "",
                                       shoppingList: false)
     
-    //var recipeDetails: RecipeDetails?
-    //var ingredients: [String] = []
-    //var recipeImage: Data?
-    
     let yummlyService = YummlyService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.barStyle = .black
         tableView.reloadData()
     }
     
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailsVC = segue.destination as? DetailsViewController {
             detailsVC.recipeDetails = recipeDetails
-            //detailsVC.ingredients = ingredients
-            
         }
     }
 }
@@ -66,7 +59,6 @@ extension RecipesViewController: UITableViewDataSource {
 extension RecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
-        //ingredients = recipes[indexPath.row].ingredients
         
         yummlyService.getRecipeDetails(recipeId: recipe.id) { (result) in
             switch result {

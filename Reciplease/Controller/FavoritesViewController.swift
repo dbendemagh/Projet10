@@ -29,6 +29,7 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barStyle = .black
         setupNavBar()
     }
     
@@ -45,15 +46,10 @@ class FavoritesViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         if let detailsVC = segue.destination as? DetailsViewController {
             detailsVC.recipeDetails = recipeDetails
-            //detailsVC.ingredients = ingredients
         }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +124,7 @@ extension FavoritesViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Search Bar
 extension FavoritesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {

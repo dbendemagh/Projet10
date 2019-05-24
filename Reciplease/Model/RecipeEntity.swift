@@ -94,7 +94,5 @@ class RecipeEntity: NSManagedObject {
             try? viewContext.save()
         }
     }
-
-    
 }
 

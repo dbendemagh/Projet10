@@ -25,40 +25,20 @@ class FavoriteTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-        
-        
     }
     
     func configure(recipe: RecipeEntity) {
         recipeName.text = recipe.name
         let ingredients = recipe.ingredients?.allObjects as! [IngredientEntity]
-        print(ingredients)
         recipeIngredients.text = ingredients.map({$0.name ?? ""}).joined(separator: ", ")
         recipeTime.text = recipe.time
         recipeRating.text = recipe.rating
         if let data = recipe.image as Data? {
             recipeImage.image = UIImage(data: data)
         } else {
-            recipeImage.image = UIImage(named: "Ingredients")
+            recipeImage.image = UIImage(named: File.defaultImage)
         }
-    }
-    
-    func setGradient() {
-        let gradientView = UIView(frame: recipeImage.bounds)
-        gradientView.backgroundColor = .clear
-        gradientView.alpha = 0.7
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        
-        gradientView.layer.addSublayer(gradientLayer)
-        recipeImage.addSubview(gradientView)
+        recipeImage.setGradient()
     }
 }
 

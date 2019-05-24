@@ -28,8 +28,6 @@ class RecipeTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configure(recipe: Recipe) {
@@ -42,21 +40,5 @@ class RecipeTableViewCell: UITableViewCell {
         let url = URL(string: urlString)
         recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Recipe-Placeholder"), options: .continueInBackground, completed: nil)
         backgroundStackView.setBackground()
-    }
-    
-    func setGradient() {
-        let gradientView = UIView(frame: recipeImage.bounds)
-        gradientView.backgroundColor = .clear
-        gradientView.alpha = 0.7
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        
-        gradientView.layer.addSublayer(gradientLayer)
-        recipeImage.addSubview(gradientView)
     }
 }

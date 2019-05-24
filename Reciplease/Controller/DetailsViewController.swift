@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import SafariServices
 
 class DetailsViewController: UIViewController {
     
@@ -39,7 +38,7 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.barStyle = .black
         initScreen()
     }
     
@@ -60,16 +59,14 @@ class DetailsViewController: UIViewController {
         
         recipeName.text = recipeDetails.name
         recipeRating.text = recipeDetails.rating
-        recipeTime.text = recipeDetails.time    // totalTimeInSeconds.secondsToString()
+        recipeTime.text = recipeDetails.time
         
-        setImage() //urlImage: recipeDetails.urlDirections) // recipeDetails.images[0].hostedLargeUrl)
+        setRecipeImage()
         
         recipeImage.setGradient()
     }
     
-    
-    
-    private func setImage() {//urlImage: String) {
+    private func setRecipeImage() {
         if let image = recipeDetails.image {
             recipeImage.image = UIImage(data: image)
             return
@@ -88,7 +85,6 @@ class DetailsViewController: UIViewController {
                     }
                 }
             }
-            //self.recipeImage.setGradient()
         }
     }
     
@@ -130,35 +126,8 @@ class DetailsViewController: UIViewController {
             }
         }
     }
-    
-    func setGradient() {
-        let gradientView = UIView(frame: recipeImage.bounds)
-        gradientView.backgroundColor = .clear
-        gradientView.alpha = 0.7
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-        
-        gradientView.layer.addSublayer(gradientLayer)
-        recipeImage.addSubview(gradientView)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: Action buttons
-    
     @IBAction func shoppingListButtonPressed(_ sender: Any) {
         RecipeEntity.toggleShoppingList(id: recipeDetails.id)
         setShoppingListButton()
@@ -169,17 +138,14 @@ class DetailsViewController: UIViewController {
         if isFavorite {
             RecipeEntity.delete(id: recipeDetails.id)
         } else {
-            RecipeEntity.add(recipeDetails: recipeDetails) //, ingredients: recipeDetails.ingredients, image: dataImage)
+            RecipeEntity.add(recipeDetails: recipeDetails)
         }
         setFavoriteButton()
     }
     
     @IBAction func getDirectionsButtonPressed(_ sender: Any) {
-        //guard !recipeDetails.urlDirections.isEmpty else { return }
         guard let url = URL(string: recipeDetails.urlDirections) else { return }
         UIApplication.shared.open(url, options: [:])
-        //let safariVC = SFSafariViewController(url: url)
-        //present(safariVC, animated: true)
     }
 }
 
@@ -191,10 +157,16 @@ extension DetailsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-        cell.textLabel?.numberOfLines = 0
+        cell.setDisplay()
         cell.textLabel?.text = "- \(recipeDetails.ingredientsDetail[indexPath.row])"
-        cell.textLabel?.font = UIFont(name: Font.reciplease, size: 14)
-        
+
         return cell
+    }
+}
+
+// MARK: - TableView Delegate
+extension DetailsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

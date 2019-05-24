@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension Data {
     func isImage() -> Bool {
         guard let _ = UIImage(data: self) else { return false }

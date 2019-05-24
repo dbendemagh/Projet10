@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Data transfert between SearchViewController, FavoritesViewController and DetailsViewController
 struct RecipeDetails {
     let name: String
     let id: String
