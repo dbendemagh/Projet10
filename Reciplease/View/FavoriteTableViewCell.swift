@@ -14,10 +14,7 @@ class FavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeIngredients: UILabel!
     @IBOutlet weak var recipeRating: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
-    
-    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var backgroundStackView: UIStackView!
-    @IBOutlet weak var gradientView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +26,9 @@ class FavoriteTableViewCell: UITableViewCell {
     
     func configure(recipe: RecipeEntity) {
         recipeName.text = recipe.name
-        let ingredients = recipe.ingredients?.allObjects as! [IngredientEntity]
-        recipeIngredients.text = ingredients.map({$0.name ?? ""}).joined(separator: ", ")
+        if let ingredients = recipe.ingredients?.allObjects as? [IngredientEntity] {
+            recipeIngredients.text = ingredients.map({$0.name ?? ""}).joined(separator: ", ")
+        }
         recipeTime.text = recipe.time
         recipeRating.text = recipe.rating
         if let data = recipe.image as Data? {
@@ -38,7 +36,9 @@ class FavoriteTableViewCell: UITableViewCell {
         } else {
             recipeImage.image = UIImage(named: File.defaultImage)
         }
+        
         recipeImage.setGradient()
+        backgroundStackView.setBackground()
     }
 }
 

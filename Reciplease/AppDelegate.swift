@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().titleTextAttributes = attrs
         }
         
-        UIApplication.shared.statusBarStyle = .lightContent
-        
         return true
     }
 

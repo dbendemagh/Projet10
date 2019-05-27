@@ -24,7 +24,7 @@ class YummlySessionFake: YummlySession {
         let error = fakeResponse.error
         let result: Result<Any> // Alamofire Result
         
-        let urlRequest = URLRequest(url: URL(string: "test")!)
+        let urlRequest = URLRequest(url: URL(string: "www.test.fr")!)
         
         if let error = error {
             result = .failure(error)

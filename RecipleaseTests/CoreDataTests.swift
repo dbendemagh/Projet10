@@ -82,7 +82,6 @@ class CoreDataTests: XCTestCase {
         XCTAssertEqual(ingredients[1].name, "eggs")
         
         let ingredientsDetail = IngredientDetailEntity.fetchIngredientsDetail(viewContext: mockContainer.viewContext, recipe: recipes[0])
-        //let ingredients = IngredientDetailEntity.fe fetchIngredients(viewContext: mockContainer.viewContext, recipe: recipes[0])
         XCTAssertEqual(ingredientsDetail.count, 20)
         XCTAssertEqual(ingredientsDetail[0].dosage, "5 tbsp olive oil")
         XCTAssertEqual(ingredientsDetail[1].dosage, "2 eggs lightly beaten")
@@ -94,7 +93,7 @@ class CoreDataTests: XCTestCase {
     }
     
     func testSearchRecipe() {
-        let recipes = RecipeEntity.searchRecipes(searchText: "sEsAmE")
+        let recipes = RecipeEntity.searchRecipes(viewContext: mockContainer.viewContext, searchText: "sEsAmE")
         XCTAssertEqual(recipes[0].name, "Crispy Sesame Chicken With a Sticky Asian Sauce")
     }
     

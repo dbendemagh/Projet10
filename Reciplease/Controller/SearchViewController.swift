@@ -9,46 +9,35 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    // MARK: - Outlets
+    
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchButton: UIButton!
     
+    // MARK: - Properties
+    
     var ingredients: [String] = []
-    let defaults = UserDefaults.standard
     let yummlyService = YummlyService()
     var recipes: YummlyRecipes?
     var isEditingIngredients: Bool = false
+    let userDefaults = UserDefaults.standard
     
-    var ingredientsBackup: [String] {
-        get {
-            guard let list = defaults.array(forKey: UserDefaultsKeys.ingredientsList) as? [String] else { return [] }
-            return list
-        }
-        set {
-            defaults.set(ingredients, forKey: UserDefaultsKeys.ingredientsList)
-        }
-    }
+    // MARK: - Init Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
         toggleActivityIndicator(shown: false)
         
-        ingredients = ingredientsBackup
+        ingredients = userDefaults.loadIngredients()
         
         setShoppinListTab()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
-        
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     // MARK: - Methods
@@ -91,6 +80,8 @@ class SearchViewController: UIViewController {
         isEditingIngredients = true
     }
     
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let recipesVC = segue.destination as? RecipesViewController, let recipes = recipes {
             recipesVC.recipes = recipes.matches
@@ -98,8 +89,13 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @IBAction func addButtonPressed(_ sender: Any) {
-        guard let ingredientsText = ingredientsTextField.text else { return }
+        guard let ingredientsText = ingredientsTextField.text, !ingredientsText.isEmpty else {
+            ingredientsTextField.becomeFirstResponder()
+            displayAlert(title: "Nothing to add", message: "Please add ingredients")
+            return
+        }
         
         let list = ingredientsText.transformToArray
         
@@ -108,18 +104,18 @@ class SearchViewController: UIViewController {
         }
         
         ingredients.sort()
-        ingredientsBackup = ingredients
+        userDefaults.saveIngredients(list: ingredients)
         
         tableView.reloadData()
         
         ingredientsTextField.text = ""
+        ingredientsTextField.resignFirstResponder()
         isEditingIngredients = false
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         ingredients.removeAll()
-        ingredientsBackup = ingredients
-        
+        userDefaults.saveIngredients(list: ingredients)
         tableView.reloadData()
     }
     
@@ -127,12 +123,17 @@ class SearchViewController: UIViewController {
         if !ingredients.isEmpty {
             searchRecipes()
         } else {
-            displayAlert(title: "No ingredients", message: "Add ingredients to search")
+            displayAlert(title: "Nothing to search", message: "Please add ingredients")
         }
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        ingredientsTextField.resignFirstResponder()
     }
 }
 
 // MARK: - TableView DataSource
+
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
@@ -148,11 +149,13 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 // MARK: - TableView Delegate
+
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: .normal, title: "EDIT") { (rowAction, indexPath) in
             self.editIngredient(name: self.ingredients[indexPath.row])
             self.ingredients.remove(at: indexPath.row)
+            self.userDefaults.saveIngredients(list: self.ingredients)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
@@ -171,5 +174,14 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - TextField Delegate
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        ingredientsTextField.resignFirstResponder()
+        return true
     }
 }

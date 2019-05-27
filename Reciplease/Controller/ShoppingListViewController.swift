@@ -9,13 +9,18 @@
 import UIKit
 
 class ShoppingListViewController: UIViewController {
+    // MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
     
     var recipes = RecipeEntity.fetchRecipesInShoppingList()
     var ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
     
     var shoppingList: [[IngredientDetailEntity]] = [[]]
+    
+    // MARK: - Init Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,8 @@ class ShoppingListViewController: UIViewController {
         }
     }
     
+    // MARK: - Methods
+    
     private func setShoppingListTab() {
         let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
         
@@ -49,6 +56,7 @@ class ShoppingListViewController: UIViewController {
 }
 
 // MARK: - TableView Datasource
+
 extension ShoppingListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return recipes.count
@@ -65,26 +73,21 @@ extension ShoppingListViewController: UITableViewDataSource {
         let recipe = shoppingList[indexPath.section]
         let ingredient = recipe[indexPath.row]
         
-        //cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(ingredient.dosage ?? "")"
-//        cell.textLabel?.font = UIFont(name: Font.reciplease, size: 14)
-//        cell.textLabel?.textColor = .white
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = UIColor.darkGray
-//        cell.selectedBackgroundView = backgroundView
         cell.accessoryType = ingredient.purchased ? .checkmark : .none
-        
+        cell.tintColor = UIColor.Reciplease.green
         return cell
     }
 }
 
 // MARK: - TableView Delegate
+
 extension ShoppingListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label  = UILabel()
         label.text = " \(recipes[section].name ?? "")"
         label.textColor = .white
-        label.backgroundColor = UIColor.Reciplease.green
+        label.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         return label
     }
     

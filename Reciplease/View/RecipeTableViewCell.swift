@@ -10,7 +10,6 @@ import UIKit
 import SDWebImage
 
 class RecipeTableViewCell: UITableViewCell {
-
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeIngredients: UILabel!

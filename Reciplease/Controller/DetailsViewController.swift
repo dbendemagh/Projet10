@@ -9,6 +9,7 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
+    // MARK: - Outlets
     
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
@@ -21,6 +22,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Properties
+    
     var recipeDetails = RecipeDetails(name: "",
                                       id: "",
                                       time: "",
@@ -32,9 +35,10 @@ class DetailsViewController: UIViewController {
                                       urlDirections: "",
                                       shoppingList: false)
     
+    let yummlyService = YummlyService()
     var isFavorite: Bool = false
     
-    let yummlyService = YummlyService()
+    // MARK: - Init Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +66,10 @@ class DetailsViewController: UIViewController {
         recipeTime.text = recipeDetails.time
         
         setRecipeImage()
-        
         recipeImage.setGradient()
     }
+    
+    // MARK: - Methods
     
     private func setRecipeImage() {
         if let image = recipeDetails.image {
@@ -101,9 +106,11 @@ class DetailsViewController: UIViewController {
         if RecipeEntity.isRecipeRegistered(id: recipeDetails.id) {
             isFavorite = true
            favoriteButton.tintColor = UIColor.Reciplease.green
+            shoppingListButton.isEnabled = true
         } else {
             isFavorite = false
             favoriteButton.tintColor = .white
+            shoppingListButton.isEnabled = false
         }
     }
     
@@ -118,16 +125,14 @@ class DetailsViewController: UIViewController {
     private func setShoppinListTab() {
         let ingredients = IngredientDetailEntity.fetchIngredientsInShoppingList()
         
+        // Number of ingredients to buy
         if let tabBarItems = tabBarController?.tabBar.items {
-            if ingredients.count > 0 {
-                tabBarItems[2].badgeValue = String(ingredients.count)
-            } else {
-                tabBarItems[2].badgeValue = nil
-            }
+            tabBarItems[2].badgeValue = ingredients.count > 0 ? String(ingredients.count) : nil
         }
     }
 
-    // MARK: Action buttons
+    // MARK: - Action buttons
+    
     @IBAction func shoppingListButtonPressed(_ sender: Any) {
         RecipeEntity.toggleShoppingList(id: recipeDetails.id)
         setShoppingListButton()
@@ -141,6 +146,8 @@ class DetailsViewController: UIViewController {
             RecipeEntity.add(recipeDetails: recipeDetails)
         }
         setFavoriteButton()
+        setShoppingListButton()
+        setShoppinListTab()
     }
     
     @IBAction func getDirectionsButtonPressed(_ sender: Any) {
@@ -150,9 +157,10 @@ class DetailsViewController: UIViewController {
 }
 
 // MARK: - TableView Datasource
+
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeDetails.ingredientsDetail.count // ingredientLines.count
+        return recipeDetails.ingredientsDetail.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,6 +173,7 @@ extension DetailsViewController: UITableViewDataSource {
 }
 
 // MARK: - TableView Delegate
+
 extension DetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

@@ -15,6 +15,7 @@
 		6512D28E2208F4DF00C53E19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6512D28C2208F4DF00C53E19 /* LaunchScreen.storyboard */; };
 		653E0F6022949975003A5ABD /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E0F5F22949975003A5ABD /* RoundButton.swift */; };
 		653E0F62229739BA003A5ABD /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E0F61229739BA003A5ABD /* UITableViewCell.swift */; };
+		653E0F64229AE721003A5ABD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653E0F63229AE721003A5ABD /* UserDefaults.swift */; };
 		654386BB228DE4F6009D30F3 /* Recipe-Placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 654386BA228DE4F6009D30F3 /* Recipe-Placeholder.jpg */; };
 		65452F5D2214274C009B28DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F5C2214274C009B28DF /* Constants.swift */; };
 		65452F602219E372009B28DF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65452F5F2219E372009B28DF /* String.swift */; };
@@ -81,6 +82,7 @@
 		6512D29A2208F4DF00C53E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		653E0F5F22949975003A5ABD /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		653E0F61229739BA003A5ABD /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		653E0F63229AE721003A5ABD /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		654386BA228DE4F6009D30F3 /* Recipe-Placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Recipe-Placeholder.jpg"; sourceTree = "<group>"; };
 		65452F5C2214274C009B28DF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		65452F5F2219E372009B28DF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				654B215F226BBE2A00F2E7D3 /* Data.swift */,
 				65FB6CCB2279A0C300129864 /* UIColor.swift */,
 				653E0F61229739BA003A5ABD /* UITableViewCell.swift */,
+				653E0F63229AE721003A5ABD /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				6559F878223C5AC300945076 /* UIStackView.swift in Sources */,
 				654B81992254006500F62A8D /* IngredientEntity.swift in Sources */,
 				65452F62221CA14C009B28DF /* YummlyProtocol.swift in Sources */,
+				653E0F64229AE721003A5ABD /* UserDefaults.swift in Sources */,
 				6563F32422246BFF0016A132 /* RecipesViewController.swift in Sources */,
 				65985AF422413ADB00737172 /* Float.swift in Sources */,
 				65FB6CCC2279A0C300129864 /* UIColor.swift in Sources */,

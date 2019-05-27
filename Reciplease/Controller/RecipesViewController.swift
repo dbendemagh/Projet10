@@ -9,8 +9,11 @@
 import UIKit
 
 class RecipesViewController: UIViewController {
+    // MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
     
     var recipes: [Recipe] = []
     var recipeDetails = RecipeDetails(name: "",
@@ -26,6 +29,8 @@ class RecipesViewController: UIViewController {
     
     let yummlyService = YummlyService()
     
+    // MARK: - Init Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
@@ -33,12 +38,15 @@ class RecipesViewController: UIViewController {
     }
     
     // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailsVC = segue.destination as? DetailsViewController {
             detailsVC.recipeDetails = recipeDetails
         }
     }
 }
+
+// MARK: - TableView DataSource
 
 extension RecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,6 +63,8 @@ extension RecipesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - TableView Delegate
 
 extension RecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

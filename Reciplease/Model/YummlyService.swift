@@ -105,7 +105,6 @@ class YummlyService {
     }
     
     func getImage(url: URL, completionHandler: @escaping (Result<Data, Error>) -> Void) {
-        
         yummlySession.request(url: url) { responseData in
             guard responseData.response?.statusCode == 200 else {
                 completionHandler(.failure(NetworkError.httpResponseKO))

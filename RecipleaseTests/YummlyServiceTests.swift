@@ -118,7 +118,7 @@ class YummlyServiceTests: XCTestCase {
                 XCTFail()
                 return
             }
-            XCTAssertEqual(recipes.matches[0].recipeName, "Tatyanas Everyday Food")
+            XCTAssertEqual(recipes.matches[0].recipeName, "Crispy Sesame Chicken With a Sticky Asian Sauce")
             expectation.fulfill()
         }
 
@@ -217,6 +217,7 @@ class YummlyServiceTests: XCTestCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
     func testGetRecipeDetailsShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         let fakeData = FakeData(file: File.recipeDetails, fileExt: "json")
         let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeData.correctData, error: nil)
@@ -230,7 +231,7 @@ class YummlyServiceTests: XCTestCase {
                 XCTFail()
                 return
             }
-            XCTAssertEqual(recipeDetails.ingredientLines[0], "1 bag of frozen meatballs, cooked according to package directions")
+            XCTAssertEqual(recipeDetails.ingredientLines[0], "5 tbsp olive oil")
             expectation.fulfill()
         }
 
@@ -259,7 +260,7 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testGetImageShouldPostFailedCallbackIfIncorrectResponse() {
-        let fakeData = FakeData(file: File.defaultImage, fileExt: "png")
+        let fakeData = FakeData(file: File.defaultImage, fileExt: "jpg")
         let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseKO, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)
@@ -314,7 +315,7 @@ class YummlyServiceTests: XCTestCase {
     }
     
     func testGetImageShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
-        let fakeData = FakeData(file: File.defaultImage, fileExt: "png")
+        let fakeData = FakeData(file: File.defaultImage, fileExt: "jpg")
         let fakeResponse = FakeResponse(httpResponse: FakeNetworkResponse.responseOK, data: fakeData.correctData, error: nil)
         let yummlySessionFake = YummlySessionFake(fakeResponse: fakeResponse)
         let yummlyService = YummlyService(yummlySession: yummlySessionFake)

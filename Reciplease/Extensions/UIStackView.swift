@@ -10,6 +10,7 @@ import UIKit
 
 extension UIStackView {
     func setBackground() {
+        if self.subviews.count == 2 {
         let backgroundView = UIView(frame: frame)
         backgroundView.backgroundColor = UIColor.darkGray
         backgroundView.alpha = 0.4
@@ -24,5 +25,6 @@ extension UIStackView {
             backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
             ])
+        }
     }
 }

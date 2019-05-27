@@ -9,8 +9,11 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
-
+    // MARK: - Outlets
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
     
     var favoriteRecipes: [RecipeEntity] = []
     var filteredFavoriteRecipes: [RecipeEntity] = []
@@ -27,10 +30,17 @@ class FavoritesViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    // MARK: - Init Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barStyle = .black
         setupNavBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        favoriteRecipes = RecipeEntity.fetchAll()
+        tableView.reloadData()
     }
     
     func setupNavBar() {
@@ -38,26 +48,21 @@ class FavoritesViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search recipes"
         searchController.searchBar.tintColor = .white
-        //searchController.searchBar.color = .white
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         definesPresentationContext = true
     }
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailsVC = segue.destination as? DetailsViewController {
             detailsVC.recipeDetails = recipeDetails
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        favoriteRecipes = RecipeEntity.fetchAll()
-        tableView.reloadData()
-    }
-    
     // MARK: - Search Bar methods
+    
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true
@@ -68,7 +73,8 @@ class FavoritesViewController: UIViewController {
     }
 }
 
-// MARK: TableView DataSource
+// MARK: - TableView DataSource
+
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
@@ -93,7 +99,8 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 }
 
-// MARK: TableView Delegate
+// MARK: - TableView Delegate
+
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe: RecipeEntity = isFiltering() ?
@@ -122,13 +129,27 @@ extension FavoritesViewController: UITableViewDelegate {
             self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Select your favorites recipes in the Recipe Details screen"
+        label.font =  UIFont(name: Font.reciplease, size: 16)
+        label.textAlignment = .center
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return favoriteRecipes.isEmpty ? 200 : 0
+    }
 }
 
 // MARK: - Search Bar
+
 extension FavoritesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            
             filteredFavoriteRecipes = favoriteRecipes.filter({ (recipeEntity) -> Bool in
                 guard let name = recipeEntity.name else { return false }
                 return name.lowercased().contains(searchText.lowercased())

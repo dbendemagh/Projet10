@@ -70,6 +70,7 @@ class RecipeEntity: NSManagedObject {
     }
     
     // MARK: - Shopping List
+    
     static func fetchRecipesInShoppingList(viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "shoppingList == True")
@@ -89,8 +90,7 @@ class RecipeEntity: NSManagedObject {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id)
         if let recipe = try? viewContext.fetch(request).first {
-            //let shoppingList = recipe.shoppingList
-            recipe.shoppingList.toggle() //= !shoppingList
+            recipe.shoppingList.toggle()
             try? viewContext.save()
         }
     }

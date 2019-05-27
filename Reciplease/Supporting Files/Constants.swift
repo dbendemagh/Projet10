@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct UserDefaultsKeys {
-    static let ingredientsList = "IngredientsList"
-}
-
 struct URLYummly {
     static let endPoint = "https://api.yummly.com/v1/api/"
     static let appId = "_app_id="
@@ -31,13 +27,14 @@ struct Font {
     static let reciplease = "Chalkduster"
 }
 
-struct Colors {
-    
-}
 enum NetworkError : Error {
     case httpResponseKO
     case incorrectURL
     case incorrectData
     case noData
     case jsonDecodeError
+}
+
+struct UserDefaultsKeys {
+    static let ingredientsList = "IngredientsList"
 }
