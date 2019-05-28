@@ -32,8 +32,7 @@ class DetailsViewController: UIViewController {
                                       image: nil,
                                       ingredients: [],
                                       ingredientsDetail: [],
-                                      urlDirections: "",
-                                      shoppingList: false)
+                                      urlDirections: "")
     
     let yummlyService = YummlyService()
     var isFavorite: Bool = false
@@ -105,7 +104,7 @@ class DetailsViewController: UIViewController {
     private func setFavoriteButton() {
         if RecipeEntity.isRecipeRegistered(id: recipeDetails.id) {
             isFavorite = true
-           favoriteButton.tintColor = UIColor.Reciplease.green
+            favoriteButton.tintColor = UIColor.Reciplease.green
             shoppingListButton.isEnabled = true
         } else {
             isFavorite = false

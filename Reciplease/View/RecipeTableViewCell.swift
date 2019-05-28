@@ -22,7 +22,6 @@ class RecipeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        recipeImage.setGradient()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,6 +37,7 @@ class RecipeTableViewCell: UITableViewCell {
         urlString = urlString.dropLast(2) + "360"
         let url = URL(string: urlString)
         recipeImage?.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "Recipe-Placeholder"), options: .continueInBackground, completed: nil)
+        recipeImage.setGradient()
         backgroundStackView.setBackground()
     }
 }

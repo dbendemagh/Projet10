@@ -9,10 +9,10 @@
 import Foundation
 
 class YummlyService {
-    private var yummlySession: YummlySession
+    private var yummlySession: YummlyProtocol
     var apiKeys = ApiKeysManager()
     
-    init(yummlySession: YummlySession = YummlySession()) {
+    init(yummlySession: YummlyProtocol = YummlySession()) {
         self.yummlySession = yummlySession
     }
     
@@ -32,7 +32,6 @@ class YummlyService {
     
     func createRecipeDetailsURL(recipeId: String) -> URL? {
         let urlString: String = URLYummly.endPoint + URLYummly.recipe + recipeId + "?" + URLYummly.appId + apiKeys.yummlyId + "&" + URLYummly.appKey + apiKeys.yummlyKey
-        print(urlString)
         guard let url = URL(string: urlString) else { return nil }
         
         return url

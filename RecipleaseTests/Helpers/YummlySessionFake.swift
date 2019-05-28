@@ -10,15 +10,14 @@ import Foundation
 import Alamofire
 @testable import Reciplease
 
-class YummlySessionFake: YummlySession {
-    
+class YummlySessionFake: YummlyProtocol {
     private let fakeResponse: FakeResponse
     
     init(fakeResponse: FakeResponse) {
         self.fakeResponse = fakeResponse
     }
     
-    override func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void) {
+    func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void) {
         let httpResponse = fakeResponse.httpResponse
         let data = fakeResponse.data
         let error = fakeResponse.error

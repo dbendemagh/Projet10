@@ -25,8 +25,7 @@ class FavoritesViewController: UIViewController {
                                       image: nil,
                                       ingredients: [],
                                       ingredientsDetail: [],
-                                      urlDirections: "",
-                                      shoppingList: false)
+                                      urlDirections: "")
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -121,10 +120,9 @@ extension FavoritesViewController: UITableViewDelegate {
                                           rating: rating,
                                           urlImage: "",
                                           image: recipe.image,
-                                          ingredients: ingredients.map({ $0.name ?? ""}),
-                                          ingredientsDetail: ingredientsDetail.map({ $0.dosage ?? ""}),
-                                          urlDirections: urlDirections,
-                                          shoppingList: false)
+                                          ingredients: ingredients.map({ $0.name ?? "" }),
+                                          ingredientsDetail: ingredientsDetail.map({ $0.dosage ?? "" }),
+                                          urlDirections: urlDirections)
             
             self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
         }

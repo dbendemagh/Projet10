@@ -19,5 +19,4 @@ struct RecipeDetails {
     let ingredients: [String]
     let ingredientsDetail: [String]
     let urlDirections: String
-    let shoppingList: Bool
 }

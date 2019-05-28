@@ -24,8 +24,7 @@ class RecipesViewController: UIViewController {
                                       image: nil,
                                       ingredients: [],
                                       ingredientsDetail: [],
-                                      urlDirections: "",
-                                      shoppingList: false)
+                                      urlDirections: "")
     
     let yummlyService = YummlyService()
     
@@ -81,8 +80,7 @@ extension RecipesViewController: UITableViewDelegate {
                                                     image: nil,
                                                     ingredients: recipe.ingredients,
                                                     ingredientsDetail: recipeDetails.ingredientLines,
-                                                    urlDirections: recipeDetails.source.sourceRecipeUrl,
-                                                    shoppingList: false)
+                                                    urlDirections: recipeDetails.source.sourceRecipeUrl)
                 self.performSegue(withIdentifier: "DetailsVCSegue", sender: self)
             case .failure(_):
                 self.displayAlert(title: "Network error", message: "Cannot retrieve recipe details")

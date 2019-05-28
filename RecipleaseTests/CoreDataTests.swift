@@ -52,8 +52,7 @@ class CoreDataTests: XCTestCase {
                                           image: fakeDataImage.correctData,
                                           ingredients: recipe.ingredients,
                                           ingredientsDetail: fakeRecipeDetails.ingredientLines,
-                                          urlDirections: fakeRecipeDetails.source.sourceRecipeUrl,
-                                          shoppingList: false)
+                                          urlDirections: fakeRecipeDetails.source.sourceRecipeUrl)
         
         RecipeEntity.add(viewContext: mockContainer.viewContext, recipeDetails: recipeDetails)
     }

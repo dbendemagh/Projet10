@@ -25,7 +25,7 @@ class RecipeEntity: NSManagedObject {
         recipe.rating = recipeDetails.rating
         recipe.time = recipeDetails.time
         recipe.urlDirections = recipeDetails.urlDirections
-        recipe.shoppingList = recipeDetails.shoppingList
+        recipe.shoppingList = false //recipeDetails.shoppingList
         if let image = recipeDetails.image {
             recipe.image = image
         }
@@ -53,7 +53,7 @@ class RecipeEntity: NSManagedObject {
         try? viewContext.save()
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
     static func searchRecipes(viewContext: NSManagedObjectContext = AppDelegate.viewContext, searchText: String) -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
