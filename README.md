@@ -2,11 +2,23 @@
 
 Reciplease est une application qui permet de rechercher des recettes.
 
+![](Documentation/Reciplease.png)
+
 Les fonctionnalités sont :
 
-- Recherche à partir d'ingrédients
+- Recherche de recettes à partir d'ingrédients
 - Sauvegarde des recettes favorites
 - Ajout des ingrédients dans la Shopping list
+
+
+## Technologies
+
+- Core Data
+
+## Dépendances
+
+- Alamofire
+- SDWebImage
 
 ## Configuration
 

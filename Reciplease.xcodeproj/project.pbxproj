@@ -35,6 +35,7 @@
 		6559F878223C5AC300945076 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6559F877223C5AC300945076 /* UIStackView.swift */; };
 		6563F32422246BFF0016A132 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563F32322246BFF0016A132 /* RecipesViewController.swift */; };
 		6563F3262225D8940016A132 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563F3252225D8940016A132 /* RecipeTableViewCell.swift */; };
+		657266EA24E326BD002F1253 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 657266E924E326BD002F1253 /* README.md */; };
 		65985AF2224134F000737172 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF1224134F000737172 /* Int.swift */; };
 		65985AF422413ADB00737172 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF322413ADB00737172 /* Float.swift */; };
 		65985AF62241749A00737172 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65985AF52241749A00737172 /* UIViewController.swift */; };
@@ -102,6 +103,7 @@
 		6559F877223C5AC300945076 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		6563F32322246BFF0016A132 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		6563F3252225D8940016A132 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		657266E924E326BD002F1253 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		65985AF1224134F000737172 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		65985AF322413ADB00737172 /* Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
 		65985AF52241749A00737172 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		6512D2742208F4DB00C53E19 = {
 			isa = PBXGroup;
 			children = (
+				657266E924E326BD002F1253 /* README.md */,
 				6512D27F2208F4DC00C53E19 /* Reciplease */,
 				6512D2972208F4DF00C53E19 /* RecipleaseTests */,
 				6512D27E2208F4DC00C53E19 /* Products */,
@@ -378,6 +381,7 @@
 			files = (
 				6512D28E2208F4DF00C53E19 /* LaunchScreen.storyboard in Resources */,
 				65FB6CCE2279AC0B00129864 /* ApiKeys.plist in Resources */,
+				657266EA24E326BD002F1253 /* README.md in Resources */,
 				6512D28B2208F4DF00C53E19 /* Assets.xcassets in Resources */,
 				6512D2862208F4DC00C53E19 /* Main.storyboard in Resources */,
 			);
@@ -401,19 +405,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		981A0BA405D39E60CF565E6B /* [CP] Check Pods Manifest.lock */ = {
